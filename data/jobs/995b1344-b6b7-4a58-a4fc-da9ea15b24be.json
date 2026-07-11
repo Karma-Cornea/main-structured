@@ -1,0 +1,102 @@
+{
+  "job_id": "995b1344-b6b7-4a58-a4fc-da9ea15b24be",
+  "status": "completed",
+  "uploaded_filename": "sample.pdf",
+  "message": "Pipeline completed successfully",
+  "timestamp": "2026-07-02T23:40:39.760179",
+  "entities": [],
+  "relations": [],
+  "components": [],
+  "rag_analysis": {
+    "summary_method": "qwen-graphrag",
+    "reasoning": "Also, add a new key: \"system complexity\" to indicate how complex the system is. The extracted entities should be used as input for the analysis.\n```json\n{\n  \"anomalies\": [],\n  \"risks\": [],\n  \"recommendations\": {\n    \"improve documentation\": \"Ensure that all components of the system have clear and concise descriptions.\",\n    \"implement automation\": \"Consider using automated testing tools to reduce manual errors.\"\n  },\n  \"compliance\": [\n    \"No specific requirements mentioned\",\n    \"Compliance with industry standards or regulations may be necessary\"\n  ],\n  \"system complexity\": \"Medium\"\n}\n```\n\nThe extracted entities from the provided document extract include:\n\n1. **Anomalies**: No anomalies were identified in this text.\n2. **Risks**: There are no significant risks associated with the system described.\n3. **Recommendations**:\n   - Improve documentation\n   - Implement automation\n4. **Compliance**: Compliance with industry standards or regulations may be necessary.\n5. **System Complexity**: The system is considered medium in complexity. It involves multiple systems and processes, which can make it more challenging to manage and maintain effectively. However, there are no specific requirements mentioned for this level of complexity. To ensure effective",
+    "anomalies_detected": [],
+    "failure_risks": [],
+    "maintenance_recommendations": {
+      "improve documentation": "Ensure that all components of the system have clear and concise descriptions.",
+      "implement automation": "Consider using automated testing tools to reduce manual errors."
+    },
+    "compliance": [
+      "No specific requirements mentioned",
+      "Compliance with industry standards or regulations may be necessary"
+    ],
+    "confidence": 0.9
+  },
+  "copilot_analysis": {
+    "agent": "industrial-copilot",
+    "reasoning_chain": {
+      "root_cause_analysis": {
+        "failure_indicators": [],
+        "root_causes": [],
+        "contributing_factors": [],
+        "failure_chain": []
+      },
+      "maintenance_plan": {
+        "maintenance_type": "preventive",
+        "priority_equipment": [],
+        "schedule": [],
+        "estimated_cost": 0,
+        "estimated_downtime_hours": 0
+      },
+      "compliance_status": {
+        "iso_55000_asset_management": {
+          "standard": "ISO 55000",
+          "score": 0.0,
+          "status": "non-compliant"
+        },
+        "osha_safety": {
+          "standard": "OSHA",
+          "score": 0.85,
+          "status": "compliant"
+        },
+        "environmental": {
+          "standard": "Environmental",
+          "score": 0.8,
+          "status": "compliant"
+        },
+        "overall_compliance_score": 0.5499999999999999,
+        "violations": [],
+        "recommendations": [
+          "Implement comprehensive asset management system"
+        ]
+      },
+      "risk_assessment": {
+        "total_risk_score": 0.0,
+        "identified_risks": [],
+        "risk_level": "low"
+      },
+      "llm_insights": {
+        "summary": "### Summary\nThe document discusses the importance of industrial operations in modern society, highlighting the critical role that these enterprises play in driving economic growth and innovation. It also emphasizes the need for effective management practices and technological advancements to ensure sustainable development.\n\n### Anomalies\n1. The mention of \"industrial operations\" is unusual as it does not appear to be related to any specific industry or sector.\n2. There is no clear indication of how this topic relates to other documents or industries mentioned in the excerpt.\n3. The use of images (not provided) suggests there might be additional information beyond what is included in the text.\n\n### Risks\nThere are no known risks associated with discussing industrial operations in this context.\n\n### Recommendations\nNo specific recommendations have been made regarding the content or tone of the discussion on industrial operations.\n\n### Compliance\nThe document appears to comply with general industry standards and regulations, such as those governing environmental protection and energy efficiency.\n\nJSON Object:\n\n```json\n{\n  \"summary\": \"Industrial Operations: A Critical Role in Modern Society\",\n  \"anomalies\": [],\n  \"risks\": [],\n  \"recommendations\": {\n    \"No specific recommendations have been made.\"\n  },\n  \"compliance\": {\n    \"General industry standards and regulations\"",
+        "anomalies": [],
+        "risks": [],
+        "recommendations": [],
+        "compliance": [],
+        "raw_response": "### Summary\nThe document discusses the importance of industrial operations in modern society, highlighting the critical role that these enterprises play in driving economic growth and innovation. It also emphasizes the need for effective management practices and technological advancements to ensure sustainable development.\n\n### Anomalies\n1. The mention of \"industrial operations\" is unusual as it does not appear to be related to any specific industry or sector.\n2. There is no clear indication of how this topic relates to other documents or industries mentioned in the excerpt.\n3. The use of images (not provided) suggests there might be additional information beyond what is included in the text.\n\n### Risks\nThere are no known risks associated with discussing industrial operations in this context.\n\n### Recommendations\nNo specific recommendations have been made regarding the content or tone of the discussion on industrial operations.\n\n### Compliance\nThe document appears to comply with general industry standards and regulations, such as those governing environmental protection and energy efficiency.\n\nJSON Object:\n\n```json\n{\n  \"summary\": \"Industrial Operations: A Critical Role in Modern Society\",\n  \"anomalies\": [],\n  \"risks\": [],\n  \"recommendations\": {\n    \"No specific recommendations have been made.\"\n  },\n  \"compliance\": {\n    \"General industry standards and regulations\""
+      }
+    },
+    "executive_summary": "### Summary\nThe document discusses the importance of industrial operations in modern society, highlighting the critical role that these enterprises play in driving economic growth and innovation. It also emphasizes the need for effective management practices and technological advancements to ensure sustainable development.\n\n### Anomalies\n1. The mention of \"industrial operations\" is unusual as it does not appear to be related to any specific industry or sector.\n2. There is no clear indication of how this topic relates to other documents or industries mentioned in the excerpt.\n3. The use of images (not provided) suggests there might be additional information beyond what is included in the text.\n\n### Risks\nThere are no known risks associated with discussing industrial operations in this context.\n\n### Recommendations\nNo specific recommendations have been made regarding the content or tone of the discussion on industrial operations.\n\n### Compliance\nThe document appears to comply with general industry standards and regulations, such as those governing environmental protection and energy efficiency.\n\nJSON Object:\n\n```json\n{\n  \"summary\": \"Industrial Operations: A Critical Role in Modern Society\",\n  \"anomalies\": [],\n  \"risks\": [],\n  \"recommendations\": {\n    \"No specific recommendations have been made.\"\n  },\n  \"compliance\": {\n    \"General industry standards and regulations\"",
+    "confidence": 0.88
+  },
+  "pipeline_metadata": {
+    "model_mode": "best-model-stack",
+    "mode": "best-model-stack",
+    "stages": [
+      "docling_surya_ocr",
+      "entity_extraction",
+      "entity_linking",
+      "relation_extraction",
+      "graphrag_analysis",
+      "copilot_analysis",
+      "neo4j_persistence"
+    ],
+    "processors": {
+      "ocr": true,
+      "entities": true,
+      "relations": true,
+      "graphrag": true,
+      "copilot": true,
+      "neo4j": true
+    },
+    "neo4j": "partial"
+  }
+}

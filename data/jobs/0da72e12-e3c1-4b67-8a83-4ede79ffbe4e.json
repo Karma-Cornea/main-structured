@@ -1,0 +1,7 @@
+{
+  "job_id": "0da72e12-e3c1-4b67-8a83-4ede79ffbe4e",
+  "status": "failed",
+  "uploaded_filename": "sample.pdf",
+  "message": "GLiNER model is not initialized. Install gliner and ensure the industrial model can be loaded.",
+  "error": "RuntimeError"
+}

@@ -1,0 +1,7 @@
+{
+  "job_id": "5b0188bb-e05d-4523-a638-aa6e5427bb09",
+  "status": "failed",
+  "uploaded_filename": "sample.pdf",
+  "message": "4 validation errors for DocumentConverter.convert\n1.lax-or-strict[lax=union[json-or-python[json=function-after[path_validator(), str],python=is-instance[Path]],function-after[path_validator(), str]],strict=json-or-python[json=function-after[path_validator(), str],python=is-instance[Path]]]\n  Input should be an instance of Path [type=is_instance_of, input_value=<_io.BytesIO object at 0x7f8c8c5831a0>, input_type=BytesIO]\n    For further information visit https://errors.pydantic.dev/2.13/v/is_instance_of\n1.str\n  Input should be a valid string [type=string_type, input_value=<_io.BytesIO object at 0x7f8c8c5831a0>, input_type=BytesIO]\n    For further information visit https://errors.pydantic.dev/2.13/v/string_type\n1.DocumentStream\n  Input should be a valid dictionary or instance of DocumentStream [type=model_type, input_value=<_io.BytesIO object at 0x7f8c8c5831a0>, input_type=BytesIO]\n    For further information visit https://errors.pydantic.dev/2.13/v/model_type\n1.HttpSource\n  Input should be a valid dictionary or instance of HttpSource [type=model_type, input_value=<_io.BytesIO object at 0x7f8c8c5831a0>, input_type=BytesIO]\n    For further information visit https://errors.pydantic.dev/2.13/v/model_type",
+  "error": "ValidationError"
+}

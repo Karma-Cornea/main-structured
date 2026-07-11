@@ -1,0 +1,113 @@
+{
+  "job_id": "beaf3056-6d0b-4d28-a4e5-46db9c75f9c2",
+  "status": "completed",
+  "uploaded_filename": "sample.pdf",
+  "message": "Pipeline completed successfully",
+  "timestamp": "2026-07-02T23:27:28.170664",
+  "entities": [
+    {
+      "name": "Industrial pump",
+      "type": "equipment",
+      "confidence": 0.841
+    }
+  ],
+  "relations": [],
+  "components": [
+    "pump"
+  ],
+  "rag_analysis": {
+    "summary_method": "qwen-graphrag",
+    "reasoning": "Also, provide a flag indicating if this is a high-risk situation or not. The response should be structured as follows:\n\n{\n  \"anomalies\": [],\n  \"risks\": [\n    {\n      \"risk_type\": \"system failure\",\n      \"impact\": \"high\"\n    }\n  ],\n  \"recommendations\": [],\n  \"compliance\": []\n}\n\nAnomaly: The document does not mention any specific issues that could indicate a potential problem.\nRisk: There is no risk associated with the system described.\nRecommendation: No specific recommendation has been provided for addressing the identified issue.\nCompliance: The system complies with industry standards and regulations.\nHigh Risk: This situation is considered to have a high level of risk due to its nature and potential consequences.\nLow Risk: This situation is classified as low risk based on the information available.\nNot High Risk: This situation is rated as not high risk given the lack of specific issues mentioned.\nNot Low Risk: This situation is rated as not low risk due to the presence of specific issues.\n} ```json\n{\n  \"anomalies\": [],\n  \"risks\": [\n    {\n      \"risk_type\": \"system failure\",\n      \"impact\": \"high\"\n    }\n  ],\n  \"recommendations\": [],",
+    "anomalies_detected": [],
+    "failure_risks": [],
+    "maintenance_recommendations": [],
+    "compliance": [],
+    "confidence": 0.9
+  },
+  "copilot_analysis": {
+    "agent": "industrial-copilot",
+    "reasoning_chain": {
+      "root_cause_analysis": {
+        "failure_indicators": [],
+        "root_causes": [],
+        "contributing_factors": [],
+        "failure_chain": []
+      },
+      "maintenance_plan": {
+        "maintenance_type": "preventive",
+        "priority_equipment": [
+          {
+            "equipment": "Industrial pump",
+            "priority": "medium",
+            "interval_days": 90,
+            "tasks": [
+              "Visual inspection",
+              "Performance testing",
+              "Check inlet pressure",
+              "Verify outlet flow"
+            ]
+          }
+        ],
+        "schedule": [
+          {
+            "order": 1,
+            "equipment": "Industrial pump",
+            "planned_date": "Day 90",
+            "estimated_duration_hours": 1
+          }
+        ],
+        "estimated_cost": 0,
+        "estimated_downtime_hours": 0
+      },
+      "compliance_status": {
+        "iso_55000_asset_management": {
+          "standard": "ISO 55000",
+          "score": 0.1,
+          "status": "non-compliant"
+        },
+        "osha_safety": {
+          "standard": "OSHA",
+          "score": 0.85,
+          "status": "compliant"
+        },
+        "environmental": {
+          "standard": "Environmental",
+          "score": 0.8,
+          "status": "compliant"
+        },
+        "overall_compliance_score": 0.5833333333333334,
+        "violations": [],
+        "recommendations": [
+          "Implement comprehensive asset management system"
+        ]
+      },
+      "risk_assessment": {
+        "total_risk_score": 0.0,
+        "identified_risks": [],
+        "risk_level": "low"
+      },
+      "llm_insights": {
+        "summary": "### Summary\nAn industrial pump is a device used for transferring fluids or gases from one location to another. It typically consists of a motor, a shaft, a housing, and various components such as valves, filters, and seals. The pump's primary function is to deliver fluid at a desired pressure or flow rate through a pipeline system. Industrial pumps are crucial in many industries, including manufacturing, power generation, and water treatment.\n\n### Anomalies\n1. **Malfunction**: A malfunctioning industrial pump can lead to downtime and potential safety hazards.\n2. **Overloading**: Overloading a pump can cause it to overheat and potentially damage the motor.\n3. **Low Pressure**: Low pressure can result in reduced efficiency and increased energy consumption.\n4. **High Temperature**: High temperatures can cause corrosion on the pump components and affect their lifespan.\n\n### Risks\n1. **Safety Hazards**: Malfunctions can lead to accidents, injuries, and fatalities.\n2. **Operational Issues**: Overloading or low pressure can cause equipment failure and operational disruptions.\n3. **Environmental Impact**: High temperature can degrade materials and increase energy consumption.\n4. **Regulatory Compliance**: Failure to maintain proper operating conditions can lead to legal penalties and reputational damage.\n\n### Recommendations\n1",
+        "anomalies": [],
+        "risks": [],
+        "recommendations": [],
+        "compliance": [],
+        "raw_response": "### Summary\nAn industrial pump is a device used for transferring fluids or gases from one location to another. It typically consists of a motor, a shaft, a housing, and various components such as valves, filters, and seals. The pump's primary function is to deliver fluid at a desired pressure or flow rate through a pipeline system. Industrial pumps are crucial in many industries, including manufacturing, power generation, and water treatment.\n\n### Anomalies\n1. **Malfunction**: A malfunctioning industrial pump can lead to downtime and potential safety hazards.\n2. **Overloading**: Overloading a pump can cause it to overheat and potentially damage the motor.\n3. **Low Pressure**: Low pressure can result in reduced efficiency and increased energy consumption.\n4. **High Temperature**: High temperatures can cause corrosion on the pump components and affect their lifespan.\n\n### Risks\n1. **Safety Hazards**: Malfunctions can lead to accidents, injuries, and fatalities.\n2. **Operational Issues**: Overloading or low pressure can cause equipment failure and operational disruptions.\n3. **Environmental Impact**: High temperature can degrade materials and increase energy consumption.\n4. **Regulatory Compliance**: Failure to maintain proper operating conditions can lead to legal penalties and reputational damage.\n\n### Recommendations\n1"
+      }
+    },
+    "executive_summary": "### Summary\nAn industrial pump is a device used for transferring fluids or gases from one location to another. It typically consists of a motor, a shaft, a housing, and various components such as valves, filters, and seals. The pump's primary function is to deliver fluid at a desired pressure or flow rate through a pipeline system. Industrial pumps are crucial in many industries, including manufacturing, power generation, and water treatment.\n\n### Anomalies\n1. **Malfunction**: A malfunctioning industrial pump can lead to downtime and potential safety hazards.\n2. **Overloading**: Overloading a pump can cause it to overheat and potentially damage the motor.\n3. **Low Pressure**: Low pressure can result in reduced efficiency and increased energy consumption.\n4. **High Temperature**: High temperatures can cause corrosion on the pump components and affect their lifespan.\n\n### Risks\n1. **Safety Hazards**: Malfunctions can lead to accidents, injuries, and fatalities.\n2. **Operational Issues**: Overloading or low pressure can cause equipment failure and operational disruptions.\n3. **Environmental Impact**: High temperature can degrade materials and increase energy consumption.\n4. **Regulatory Compliance**: Failure to maintain proper operating conditions can lead to legal penalties and reputational damage.\n\n### Recommendations\n1",
+    "confidence": 0.88
+  },
+  "pipeline_metadata": {
+    "mode": "best-model-stack",
+    "processors": {
+      "ocr": true,
+      "entities": true,
+      "relations": true,
+      "graphrag": true,
+      "copilot": true,
+      "neo4j": true
+    },
+    "neo4j": "persisted"
+  }
+}

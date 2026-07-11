@@ -1,0 +1,7 @@
+{
+  "job_id": "f3338e42-189e-4001-99ee-303e374af543",
+  "status": "failed",
+  "uploaded_filename": "sample.pdf",
+  "message": "Docling+Surya OCR processor is not initialized. Install docling and surya-ocr.",
+  "error": "RuntimeError"
+}

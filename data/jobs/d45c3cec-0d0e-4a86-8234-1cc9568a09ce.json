@@ -1,0 +1,75 @@
+{
+  "job_id": "d45c3cec-0d0e-4a86-8234-1cc9568a09ce",
+  "status": "completed",
+  "uploaded_filename": "sample.pdf",
+  "message": "Model pipeline completed",
+  "extraction_summary": "Extracted 10 words from the PDF and synthesized 5 entities with 1 relations.",
+  "entities": [
+    {
+      "name": "Pump",
+      "entity_type": "equipment",
+      "confidence": 0.7,
+      "canonical_name": "pump"
+    },
+    {
+      "name": "Motor",
+      "entity_type": "equipment",
+      "confidence": 0.7,
+      "canonical_name": "motor"
+    },
+    {
+      "name": "Sensor",
+      "entity_type": "equipment",
+      "confidence": 0.7,
+      "canonical_name": "sensor"
+    },
+    {
+      "name": "Pressure",
+      "entity_type": "equipment",
+      "confidence": 0.7,
+      "canonical_name": "pressure"
+    },
+    {
+      "name": "Industrial",
+      "entity_type": "entity",
+      "confidence": 0.7,
+      "canonical_name": "industrial"
+    }
+  ],
+  "relations": [
+    {
+      "source": "Pump",
+      "target": "Motor",
+      "relation_type": "controls",
+      "confidence": 0.82
+    }
+  ],
+  "graph_summary": "Graph contains 5 entities and 1 relations. Top entities: Pump, Motor, Sensor, Pressure, Industrial. Top relations: Pump->Motor.",
+  "neo4j_status": "neo4j:skipped (Couldn't connect to localhost:7687 (resolved to ('127.0.0.1:7687',)):\nFailed to establish connection to ResolvedIPv4Address(('127.0.0.1', 7687)) (reason [Errno 111] Connection refused))",
+  "pipeline_metadata": {
+    "stages": [
+      "docling_surya_ocr",
+      "yolo_pid_detector",
+      "gliner_entity_extraction",
+      "glirel_relation_extraction",
+      "entity_linking",
+      "neo4j_persist",
+      "graphrag_summary",
+      "qwen_agent"
+    ],
+    "entity_model": "dslim/bert-base-NER",
+    "text_word_count": 10,
+    "model_mode": "local-transformers",
+    "detected_components": [
+      "pump",
+      "motor",
+      "sensor"
+    ],
+    "agent_summary": "Industrial copilot view: Pump, Motor, Sensor, Pressure, Industrial; evidence links: Pump->Motor.",
+    "loaded_models": {
+      "entity_model": "dslim/bert-base-NER",
+      "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+      "pid_detector": "yolov8n.pt"
+    }
+  }
+}

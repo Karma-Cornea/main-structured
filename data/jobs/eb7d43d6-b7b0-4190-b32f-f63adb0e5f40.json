@@ -1,0 +1,60 @@
+{
+  "job_id": "eb7d43d6-b7b0-4190-b32f-f63adb0e5f40",
+  "status": "completed",
+  "uploaded_filename": "sample.pdf",
+  "message": "Pipeline completed",
+  "extraction_summary": "Extracted 10 words from the PDF and synthesized 6 entities with 0 relations.",
+  "entities": [
+    {
+      "name": "Pump",
+      "entity_type": "equipment",
+      "confidence": 0.7,
+      "canonical_name": "pump"
+    },
+    {
+      "name": "Motor",
+      "entity_type": "equipment",
+      "confidence": 0.7,
+      "canonical_name": "motor"
+    },
+    {
+      "name": "Sensor",
+      "entity_type": "equipment",
+      "confidence": 0.7,
+      "canonical_name": "sensor"
+    },
+    {
+      "name": "Pressure",
+      "entity_type": "equipment",
+      "confidence": 0.7,
+      "canonical_name": "pressure"
+    },
+    {
+      "name": "Industrial",
+      "entity_type": "entity",
+      "confidence": 0.7,
+      "canonical_name": "industrial"
+    },
+    {
+      "name": "Pressure Sensor",
+      "entity_type": "entity",
+      "confidence": 0.7,
+      "canonical_name": "pressure_sensor"
+    }
+  ],
+  "relations": [],
+  "graph_summary": "Graph contains 6 entities and 0 relations. Top entities: Pump, Motor, Sensor, Pressure, Industrial. Top relations: none.",
+  "neo4j_status": "neo4j:skipped (Couldn't connect to localhost:7687 (resolved to ('127.0.0.1:7687',)):\nFailed to establish connection to ResolvedIPv4Address(('127.0.0.1', 7687)) (reason [Errno 111] Connection refused))",
+  "pipeline_metadata": {
+    "stages": [
+      "pdf_text_extraction",
+      "entity_extraction",
+      "entity_validation",
+      "relation_extraction",
+      "entity_resolution",
+      "neo4j_persist"
+    ],
+    "entity_model": "heuristic",
+    "text_word_count": 10
+  }
+}

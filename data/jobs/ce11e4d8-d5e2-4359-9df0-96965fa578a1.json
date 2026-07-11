@@ -1,0 +1,270 @@
+{
+  "job_id": "ce11e4d8-d5e2-4359-9df0-96965fa578a1",
+  "status": "completed",
+  "uploaded_filename": "sample.pdf",
+  "message": "Pipeline completed successfully",
+  "timestamp": "2026-07-03T02:44:30.996636",
+  "text": "## Industrial pump controls a motor and monitors a pressure sensor.",
+  "entities": [
+    {
+      "name": "Industrial pump",
+      "entity_type": "equipment",
+      "confidence": 0.934,
+      "canonical_name": "industrial_pump"
+    },
+    {
+      "name": "pressure sensor",
+      "entity_type": "parameter",
+      "confidence": 0.352,
+      "canonical_name": "pressure_sensor"
+    }
+  ],
+  "relations": [
+    {
+      "source": "Industrial pump",
+      "target": "pressure sensor",
+      "relation_type": "controls a motor and monitors a",
+      "confidence": 0.45,
+      "source_method": "heuristic"
+    }
+  ],
+  "pid_components": [
+    "pump",
+    "motor",
+    "sensor"
+  ],
+  "semantic_indexing": {
+    "status": "indexed",
+    "indexed_chunks": 1
+  },
+  "document_segments": [
+    "## Industrial pump controls a motor and monitors a pressure sensor."
+  ],
+  "layout": [],
+  "tables": [],
+  "formulas": {
+    "formulas": []
+  },
+  "reading_order": {
+    "reading_order": []
+  },
+  "vision_language": {},
+  "neo4j_status": "persisted",
+  "rag_analysis": {
+    "summary_method": "qwen-graphrag",
+    "reasoning": "{\"anomalies\": [], \"risks\": [], \"recommendations\": [], \"compliance\": [], \"confidence\": 1.0} {\"anomalies\": [\"Industrial pump\"], \"risks\": [], \"recommendations\": [], \"compliance\": [], \"confidence\": 1.0} {\"anomalies\": [], \"risks\": [\"Industrial pump\"], \"recommendations\": [], \"compliance\": [], \"confidence\": 1.0} {\"anomalies\": [], \"risks\": [], \"recommendations\": [\"Industrial pump\"], \"compliance\": [], \"confidence\": 1.0} {\"anomalies\": [], \"risks\": [], \"recommendations\": [], \"compliance\": [], \"confidence\": 1.0} {\"anomalies\": [], \"risks\": [], \"recommendations\": [], \"compliance\": [], \"confidence\": 1.0} {\"anomalies\": [], \"risks\": [], \"recommendations\": [], \"compliance\": [], \"confidence\": 1.0} {\"anomalies\": [], \"risks\": [], \"recommendations\": [], \"compliance\": [], \"confidence\": 1.0} {\"anomalies\": [], \"risks\": [], \"recommendations\":",
+    "anomalies_detected": [],
+    "failure_risks": [],
+    "maintenance_recommendations": [],
+    "compliance": [],
+    "confidence": 1.0
+  },
+  "copilot_analysis": {
+    "agent": "industrial-copilot",
+    "reasoning_chain": {
+      "root_cause_analysis": {
+        "failure_indicators": [
+          "pressure"
+        ],
+        "root_causes": [],
+        "contributing_factors": [
+          "pressure sensor is associated with pressure"
+        ],
+        "failure_chain": [
+          {
+            "from": "Industrial pump",
+            "to": "pressure sensor",
+            "relation": "controls a motor and monitors a"
+          }
+        ]
+      },
+      "maintenance_plan": {
+        "maintenance_type": "preventive",
+        "priority_equipment": [
+          {
+            "equipment": "Industrial pump",
+            "priority": "medium",
+            "interval_days": 90,
+            "tasks": [
+              "Visual inspection",
+              "Performance testing",
+              "Check inlet pressure",
+              "Verify outlet flow"
+            ]
+          }
+        ],
+        "schedule": [
+          {
+            "order": 1,
+            "equipment": "Industrial pump",
+            "planned_date": "Day 90",
+            "estimated_duration_hours": 1
+          }
+        ],
+        "estimated_cost": 0,
+        "estimated_downtime_hours": 0
+      },
+      "compliance_status": {
+        "iso_55000_asset_management": {
+          "standard": "ISO 55000",
+          "score": 0.1,
+          "status": "non-compliant"
+        },
+        "osha_safety": {
+          "standard": "OSHA",
+          "score": 0.85,
+          "status": "compliant"
+        },
+        "environmental": {
+          "standard": "Environmental",
+          "score": 0.8,
+          "status": "compliant"
+        },
+        "overall_compliance_score": 0.5833333333333334,
+        "violations": [],
+        "recommendations": [
+          "Strengthen asset management documentation and safety checks."
+        ]
+      },
+      "risk_assessment": {
+        "total_risk_score": 0.0,
+        "identified_risks": [],
+        "risk_level": "medium"
+      },
+      "llm_insights": {
+        "summary": "An industrial pump controls a motor and monitors a pressure sensor.",
+        "anomalies": [],
+        "risks": [],
+        "recommendations": [],
+        "compliance": [],
+        "confidence": 1,
+        "raw_response": "```json\n{\n  \"summary\": \"An industrial pump controls a motor and monitors a pressure sensor.\",\n  \"anomalies\": [],\n  \"risks\": [],\n  \"recommendations\": [],\n  \"compliance\": [],\n  \"confidence\": 1\n}\n``` \n\n```json\n{\n  \"summary\": \"An industrial pump controls a motor and monitors a pressure sensor.\",\n  \"anomalies\": [],\n  \"risks\": [],\n  \"recommendations\": [],\n  \"compliance\": [],\n  \"confidence\": 1\n}\n``` \n\n```json\n{\n  \"summary\": \"An industrial pump controls a motor and monitors a pressure sensor.\",\n  \"anomalies\": [],\n  \"risks\": [],\n  \"recommendations\": [],\n  \"compliance\": [],\n  \"confidence\": 1\n}\n``` \n\n```json\n{\n  \"summary\": \"An industrial pump controls a motor and monitors a pressure sensor.\",\n  \"anomalies\": [],\n  \"risks\": [],\n  \"recommendations\": [],\n  \"compliance\": [],\n  \"confidence\": 1\n}\n``` \n\n```json\n{\n  \"summary\": \"An industrial pump controls a motor and monitors a pressure sensor.\",\n  \"anomalies\": [],\n  \"ris"
+      }
+    },
+    "executive_summary": "An industrial pump controls a motor and monitors a pressure sensor.",
+    "confidence": 1
+  },
+  "pipeline_metadata": {
+    "model_mode": "best-model-stack",
+    "runtime_mode": "best-model-stack",
+    "stage_status": [
+      {
+        "stage": "ocr",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:42:31.399644"
+      },
+      {
+        "stage": "surya_layout_understanding",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:42:31.399983"
+      },
+      {
+        "stage": "table_extraction",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:42:31.400011"
+      },
+      {
+        "stage": "nougat_formula_recognition",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:42:31.400079"
+      },
+      {
+        "stage": "docling_reading_order",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:42:31.400102"
+      },
+      {
+        "stage": "pid_component_detection",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:42:31.452460"
+      },
+      {
+        "stage": "document_segmentation",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:42:31.452865"
+      },
+      {
+        "stage": "semantic_indexing",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:42:32.108165"
+      },
+      {
+        "stage": "entity_extraction",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:42:32.876333"
+      },
+      {
+        "stage": "relation_extraction",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:42:43.253990"
+      },
+      {
+        "stage": "entity_linking",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:42:43.254043"
+      },
+      {
+        "stage": "qwen2_5_vl",
+        "status": "skipped",
+        "message": "slice(None, 12, None)",
+        "timestamp": "2026-07-03T02:42:43.254598"
+      },
+      {
+        "stage": "graphrag_analysis",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:43:33.108752"
+      },
+      {
+        "stage": "copilot_analysis",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:44:30.853891"
+      },
+      {
+        "stage": "neo4j_persistence",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-03T02:44:30.996598"
+      }
+    ],
+    "stages": [
+      "ocr",
+      "surya_layout_understanding",
+      "table_extraction",
+      "nougat_formula_recognition",
+      "docling_reading_order",
+      "pid_component_detection",
+      "document_segmentation",
+      "semantic_indexing",
+      "entity_extraction",
+      "relation_extraction",
+      "entity_linking",
+      "qwen2_5_vl",
+      "graphrag_analysis",
+      "copilot_analysis",
+      "neo4j_persistence"
+    ],
+    "loaded_components": {
+      "ocr": true,
+      "entity_extractor": true,
+      "relation_extractor": true,
+      "neo4j": true,
+      "rag": true,
+      "copilot": true,
+      "yolo": true,
+      "embeddings": true
+    }
+  }
+}

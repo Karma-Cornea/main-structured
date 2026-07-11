@@ -1,0 +1,156 @@
+{
+  "job_id": "d9d84bca-9e1d-4834-992f-0a5816bc6a0e",
+  "status": "completed",
+  "uploaded_filename": "sample.pdf",
+  "message": "Pipeline completed successfully",
+  "timestamp": "2026-07-02T23:43:59.691461",
+  "entities": [
+    {
+      "name": "Industrial pump",
+      "type": "equipment",
+      "confidence": 0.934
+    },
+    {
+      "name": "pressure sensor",
+      "type": "parameter",
+      "confidence": 0.352
+    }
+  ],
+  "relations": [
+    {
+      "source": "pressure sensor",
+      "target": "Industrial pump",
+      "relation_type": "part of",
+      "confidence": 0.75,
+      "source_method": "rebel"
+    }
+  ],
+  "components": [
+    "pump",
+    "motor",
+    "sensor"
+  ],
+  "rag_analysis": {
+    "summary_method": "qwen-graphrag",
+    "reasoning": "Anomalies should be represented as \"Anomaly: [value]\" and risks as \"Risk: [value]\". Recommendations should be represented as \"Recommendation: [value]\", and compliance as \"Compliance: [value]\".\n\nData format is as follows:\n{\n    \"anomalies\": [\"pressure sensor\"],\n    \"risks\": [\"system failure\", \"motor damage\"],\n    \"recommendations\": [\"Install additional pressure sensors to monitor other parameters\", \"Implement redundancy in pressure sensor configuration\"],\n    \"compliance\": \"High\"\n} To analyze the given system, let's break it down into its key components:\n\n1. **Industrial Pump**: This is the primary component that controls the motor and monitors the pressure sensor.\n2. **Pressure Sensor**: This device measures the pressure inside the pump and provides feedback to control the motor.\n\n### Key Components Analysis\n- **Industrial Pump**: Controls the motor and monitors the pressure sensor.\n- **Pressure Sensor**: Measures the pressure inside the pump and provides feedback to control the motor.\n\n### System Overview\nThe system appears to have two main parts: the Industrial Pump and the Pressure Sensor. The Industrial Pump is responsible for controlling the motor, while the Pressure Sensor monitors the pressure inside the pump.\n\n### Potential Risks\nThere are no",
+    "anomalies_detected": [
+      "pressure sensor"
+    ],
+    "failure_risks": [
+      "system failure",
+      "motor damage"
+    ],
+    "maintenance_recommendations": [
+      "Install additional pressure sensors to monitor other parameters",
+      "Implement redundancy in pressure sensor configuration"
+    ],
+    "compliance": "High",
+    "confidence": 0.9
+  },
+  "copilot_analysis": {
+    "agent": "industrial-copilot",
+    "reasoning_chain": {
+      "root_cause_analysis": {
+        "failure_indicators": [
+          "pressure"
+        ],
+        "root_causes": [],
+        "contributing_factors": [
+          "Condition related to pressure sensor"
+        ],
+        "failure_chain": [
+          {
+            "from": "pressure sensor",
+            "to": "Industrial pump",
+            "relation": "part of"
+          }
+        ]
+      },
+      "maintenance_plan": {
+        "maintenance_type": "preventive",
+        "priority_equipment": [
+          {
+            "equipment": "Industrial pump",
+            "priority": "medium",
+            "interval_days": 90,
+            "tasks": [
+              "Visual inspection",
+              "Performance testing",
+              "Check inlet pressure",
+              "Verify outlet flow"
+            ]
+          }
+        ],
+        "schedule": [
+          {
+            "order": 1,
+            "equipment": "Industrial pump",
+            "planned_date": "Day 90",
+            "estimated_duration_hours": 1
+          }
+        ],
+        "estimated_cost": 0,
+        "estimated_downtime_hours": 0
+      },
+      "compliance_status": {
+        "iso_55000_asset_management": {
+          "standard": "ISO 55000",
+          "score": 0.1,
+          "status": "non-compliant"
+        },
+        "osha_safety": {
+          "standard": "OSHA",
+          "score": 0.85,
+          "status": "compliant"
+        },
+        "environmental": {
+          "standard": "Environmental",
+          "score": 0.8,
+          "status": "compliant"
+        },
+        "overall_compliance_score": 0.5833333333333334,
+        "violations": [],
+        "recommendations": [
+          "Implement comprehensive asset management system"
+        ]
+      },
+      "risk_assessment": {
+        "total_risk_score": 0.0,
+        "identified_risks": [],
+        "risk_level": "low"
+      },
+      "llm_insights": {
+        "summary": "### Summary\nAn industrial pump is used to control a motor and monitor a pressure sensor. The pump's function is to deliver fluid from its reservoir to the motor at a specific pressure level. The pump's operation is monitored by a pressure sensor that measures the pressure in the system.\n\n### Anomalies\n1. **Pressure Sensor Failure**: If the pressure sensor malfunctions or fails, it could lead to inaccurate monitoring of the pump's performance.\n2. **Motor Overheating**: High temperatures can cause damage to the motor due to excessive heat generated during operation.\n3. **System Malfunctioning**: A malfunctioning pump could result in reduced efficiency and potential downtime for the facility.\n\n### Risks\n1. **Operational Hazards**: Accidents involving the pump causing mechanical failure or overheating could lead to safety incidents.\n2. **Environmental Impact**: Excessive heat generation from the pump could affect the surrounding environment, potentially leading to environmental issues.\n3. **Maintenance Challenges**: Frequent maintenance required to keep the pump running correctly could strain the facility's resources.\n\n### Recommendations\n1. **Regular Maintenance**: Implement regular checks on the pressure sensor to ensure it remains functional and functioning properly.\n2. **Temperature Control**: Install temperature sensors to monitor the pump's operating conditions and",
+        "anomalies": [],
+        "risks": [],
+        "recommendations": [],
+        "compliance": [],
+        "raw_response": "### Summary\nAn industrial pump is used to control a motor and monitor a pressure sensor. The pump's function is to deliver fluid from its reservoir to the motor at a specific pressure level. The pump's operation is monitored by a pressure sensor that measures the pressure in the system.\n\n### Anomalies\n1. **Pressure Sensor Failure**: If the pressure sensor malfunctions or fails, it could lead to inaccurate monitoring of the pump's performance.\n2. **Motor Overheating**: High temperatures can cause damage to the motor due to excessive heat generated during operation.\n3. **System Malfunctioning**: A malfunctioning pump could result in reduced efficiency and potential downtime for the facility.\n\n### Risks\n1. **Operational Hazards**: Accidents involving the pump causing mechanical failure or overheating could lead to safety incidents.\n2. **Environmental Impact**: Excessive heat generation from the pump could affect the surrounding environment, potentially leading to environmental issues.\n3. **Maintenance Challenges**: Frequent maintenance required to keep the pump running correctly could strain the facility's resources.\n\n### Recommendations\n1. **Regular Maintenance**: Implement regular checks on the pressure sensor to ensure it remains functional and functioning properly.\n2. **Temperature Control**: Install temperature sensors to monitor the pump's operating conditions and"
+      }
+    },
+    "executive_summary": "### Summary\nAn industrial pump is used to control a motor and monitor a pressure sensor. The pump's function is to deliver fluid from its reservoir to the motor at a specific pressure level. The pump's operation is monitored by a pressure sensor that measures the pressure in the system.\n\n### Anomalies\n1. **Pressure Sensor Failure**: If the pressure sensor malfunctions or fails, it could lead to inaccurate monitoring of the pump's performance.\n2. **Motor Overheating**: High temperatures can cause damage to the motor due to excessive heat generated during operation.\n3. **System Malfunctioning**: A malfunctioning pump could result in reduced efficiency and potential downtime for the facility.\n\n### Risks\n1. **Operational Hazards**: Accidents involving the pump causing mechanical failure or overheating could lead to safety incidents.\n2. **Environmental Impact**: Excessive heat generation from the pump could affect the surrounding environment, potentially leading to environmental issues.\n3. **Maintenance Challenges**: Frequent maintenance required to keep the pump running correctly could strain the facility's resources.\n\n### Recommendations\n1. **Regular Maintenance**: Implement regular checks on the pressure sensor to ensure it remains functional and functioning properly.\n2. **Temperature Control**: Install temperature sensors to monitor the pump's operating conditions and",
+    "confidence": 0.88
+  },
+  "pipeline_metadata": {
+    "model_mode": "best-model-stack",
+    "mode": "best-model-stack",
+    "stages": [
+      "docling_surya_ocr",
+      "entity_extraction",
+      "entity_linking",
+      "relation_extraction",
+      "graphrag_analysis",
+      "copilot_analysis",
+      "neo4j_persistence"
+    ],
+    "processors": {
+      "ocr": true,
+      "entities": true,
+      "relations": true,
+      "graphrag": true,
+      "copilot": true,
+      "neo4j": true
+    },
+    "neo4j": "skipped"
+  }
+}
