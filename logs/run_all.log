@@ -1,0 +1,272 @@
+================================================================================
+Industrial PDF-to-Graph Pipeline - Full Setup & Startup
+================================================================================
+
+Logging to: /media/sagesujal/DEV1/bytes/structured/logs/run_all.log
+
+[1/6] Setting up Python environment...
+  Loading environment from .env.local
+[2/6] Checking backend service mode...
+  Running in native backend mode for local/Kaggle environments.
+  Native backend mode enabled. Docker will not be used.
+  Preparing native Redis...
+  Starting Redis on localhost:6379
+  Preparing native Qdrant...
+  Starting Qdrant on localhost:6333
+  Preparing native Neo4j...
+  Starting Neo4j on localhost:7687
+  Waiting for Redis on 127.0.0.1:6379...
+  ✓ Redis is ready
+  Waiting for Qdrant on 127.0.0.1:6333...
+  ✓ Qdrant is ready
+  Waiting for Neo4j on 127.0.0.1:7687...
+  ✓ Neo4j is ready
+[3/6] Installing Python dependencies...
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/albumentations/__init__.py:24: UserWarning: A new version of Albumentations is available: 2.0.8 (you have 1.4.24). Upgrade using: pip install -U albumentations. To disable automatic update checks, set the environment variable NO_ALBUMENTATIONS_UPDATE to 1.
+  check_for_updates()
+Detected missing runtime dependencies: surya-ocr>=0.4.10, nougat-ocr>=0.1.17, umap-learn>=0.5.4
+Traceback (most recent call last):
+  File "/media/sagesujal/DEV1/bytes/structured/scripts/ensure_dependencies.py", line 246, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/media/sagesujal/DEV1/bytes/structured/scripts/ensure_dependencies.py", line 240, in main
+    ensure_dependencies(args.requirements, python_executable=args.python, include_optional=args.include_optional)
+  File "/media/sagesujal/DEV1/bytes/structured/scripts/ensure_dependencies.py", line 194, in ensure_dependencies
+    if not missing_packages:
+           ^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'missing_packages' where it is not associated with a value
+  ⚠ Dependency bootstrap reported issues; continuing in best-effort mode.
+[4/6] Creating necessary directories...
+  ✓ Directories created
+[5/6] Downloading and preparing AI models...
+
+  This step downloads ~2.5GB of pre-trained models.
+  Models will be cached for future runs.
+
+[CONFIG] Loaded configuration from: /media/sagesujal/DEV1/bytes/structured/.env.local
+[CONFIG] Execution Mode: GPU
+[CONFIG] Running in GPU mode (optimized for speed)
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/ultralytics/nn/tasks.py:732: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(file, map_location="cpu")
+UserWarning: Failed to load custom C++ ops. Running on CPU mode Only!
+UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3595.)
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+UserWarning: The sentencepiece tokenizer that you are converting to a fast tokenizer uses the byte fallback option which is not implemented in the fast tokenizers. In practice this means that the fast version of the tokenizer can produce unknown tokens whereas the sentencepiece version would have converted these unknown tokens into a sequence of byte tokens matching the original piece of text.
+FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  Initializing CORE models (downloading if needed)...
+  ----------------------------------------------------------------------
+✓ PID Symbol Detector ready (yolov8)
+  ✓ YOLOv12 P&ID Detector
+final text_encoder_type: bert-base-uncased
+✓ GroundingDINO detector ready
+  ✓ GroundingDINO Zero-shot Detector
+✓ SAM2 segmenter ready
+  ✓ SAM2 Segmenter
+✓ BGE Embedder ready (transformers): BAAI/bge-m3
+  ✓ BGE-M3 Embedder
+✓ BGE Reranker ready: BAAI/bge-reranker-v2-m3
+  ✓ BGE-Reranker-v2
+⚠ GLiREL initialization failed: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434, using heuristic fallback
+  ⚠ GLiREL Relation Extractor: unavailable
+⚠ BLINK unavailable; using lightweight lexical fallback
+  ⚠ BLINK Entity Linker: unavailable
+  ----------------------------------------------------------------------
+  Core models ready: 5/7
+
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 3676.63it/s]
+✓ GLiNER loaded (medium-v2.1) on cpu
+  ✓ GLiNER Entity Extractor
+✗ GLiREL initialization failed: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+  ⚠ GLiREL Relation Extractor (in pipeline): unavailable
+
+  Initializing ADVANCED models...
+  ----------------------------------------------------------------------
+
+  Advanced models ready: 10/10
+
+  All models initialization complete!
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/qdrant_client/qdrant_client.py:169: RuntimeWarning: Unable to close http connection. Connection was interrupted on the server side
+  ✓ Models ready
+[6/6] Starting services...
+
+  Skipping qdrant and neo4j container startup because Docker daemon is unavailable.
+
+================================================================================
+✓ Industrial PDF-to-Graph Pipeline Ready!
+================================================================================
+
+Backend running on:
+  HTTP:  http://127.0.0.1:8001
+  Docs:  http://127.0.0.1:8001/docs
+  ReDoc: http://127.0.0.1:8001/redoc
+
+CORE API Endpoints:
+  POST   /api/v1/process-pdf        - Upload and process PDF
+  GET    /api/v1/jobs               - List all jobs
+  GET    /api/v1/jobs/{job_id}      - Get job results
+  GET    /api/v1/models/status      - Check model status
+  GET    /health                    - Health check
+
+ADVANCED ANALYSIS Endpoints:
+  GET    /api/v1/advanced/models/status           - Advanced models status
+  POST   /api/v1/advanced/vector-search           - Search embeddings (Qdrant)
+  POST   /api/v1/advanced/graph-reasoning         - GraphRAG reasoning
+  POST   /api/v1/advanced/llm-analysis            - Qwen 3 LLM analysis
+  POST   /api/v1/advanced/anomaly-detection       - TimesFM anomaly detection
+  POST   /api/v1/advanced/rul-prediction          - TFT RUL prediction
+  POST   /api/v1/advanced/root-cause-analysis     - RCA with full analysis
+  POST   /api/v1/advanced/failure-prediction      - Predict equipment failure
+  GET    /api/v1/advanced/pipeline-stages         - List all advanced stages
+
+AI MODELS INTEGRATED:
+  Core (8 models):        YOLOv12, GroundingDINO, SAM2, GLiNER, GLiREL, BLINK, BGE-M3, BGE-Reranker
+  Advanced (7 systems):   Qdrant, GraphRAG, Qwen 3, TimesFM, TFT, LangGraph, RCA Agent
+  Total:                  15 models + systems integrated
+
+Execution Mode: gpu
+  Set EXECUTION_MODE=gpu for optimized GPU processing
+  Local CPU mode: No time restrictions, suitable for testing all features
+  GPU mode: Optimized for speed on server hardware
+
+Ctrl+C to stop the server
+================================================================================
+
+[CONFIG] Loaded configuration from: /media/sagesujal/DEV1/bytes/structured/.env.local
+[CONFIG] Execution Mode: GPU
+[CONFIG] Running in GPU mode (optimized for speed)
+INFO:     Started server process [862797]
+INFO:     Waiting for application startup.
+Initializing Industrial PDF-to-Graph Pipeline...
+✓ Docling OCR initialized for PDF OCR
+✓ OCR processor ready (DoclingOCRProcessor)
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 44525.52it/s]
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/transformers/convert_slow_tokenizer.py:566: UserWarning: The sentencepiece tokenizer that you are converting to a fast tokenizer uses the byte fallback option which is not implemented in the fast tokenizers. In practice this means that the fast version of the tokenizer can produce unknown tokens whereas the sentencepiece version would have converted these unknown tokens into a sequence of byte tokens matching the original piece of text.
+  warnings.warn(
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/transformers/convert_slow_tokenizer.py:566: UserWarning: The sentencepiece tokenizer that you are converting to a fast tokenizer uses the byte fallback option which is not implemented in the fast tokenizers. In practice this means that the fast version of the tokenizer can produce unknown tokens whereas the sentencepiece version would have converted these unknown tokens into a sequence of byte tokens matching the original piece of text.
+  warnings.warn(
+UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3595.)
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+✓ GLiNER loaded (medium-v2.1) on cpu
+✓ Entity extractor ready (GlinerEntityExtractor)
+✗ GLiREL initialization failed: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+⚠ Relation extractor initialization failed: RuntimeError - Relation extractor did not initialize
+✓ PID Symbol Detector ready (yolov8)
+✓ PID symbol detector ready (yolov8)
+final text_encoder_type: bert-base-uncased
+✓ GroundingDINO detector ready
+✓ GroundingDINO detector ready
+✓ SAM2 segmenter ready
+✓ SAM2 segmenter ready
+✓ BGE Embedder ready (transformers): BAAI/bge-m3
+✓ BGE embedding model ready
+✓ BGE Reranker ready: BAAI/bge-reranker-v2-m3
+✓ BGE reranker ready
+✓ BLINK linker ready
+  Waiting for Neo4j (1/20): {neo4j_code: Neo.ClientError.Security.Unauthorized} {message: The client is unauthorized due to authentication failure.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. The client is unauthorized due to authentication failure.}
+  Waiting for Neo4j (6/20): {neo4j_code: Neo.ClientError.Security.AuthenticationRateLimit} {message: The client has provided incorrect authentication details too many times in a row.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. The client has provided incorrect authentication details too many times in a row.}
+  Waiting for Neo4j (11/20): {neo4j_code: Neo.ClientError.Security.Unauthorized} {message: The client is unauthorized due to authentication failure.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. The client is unauthorized due to authentication failure.}
+  Waiting for Neo4j (16/20): {neo4j_code: Neo.ClientError.Security.AuthenticationRateLimit} {message: The client has provided incorrect authentication details too many times in a row.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. The client has provided incorrect authentication details too many times in a row.}
+  Waiting for Neo4j (20/20): {neo4j_code: Neo.ClientError.Security.AuthenticationRateLimit} {message: The client has provided incorrect authentication details too many times in a row.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. The client has provided incorrect authentication details too many times in a row.}
+✗ Neo4j unavailable: {neo4j_code: Neo.ClientError.Security.AuthenticationRateLimit} {message: The client has provided incorrect authentication details too many times in a row.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. The client has provided incorrect authentication details too many times in a row.}
+✗ Neo4j store unavailable
+✓ GraphRAG summarizer ready (GraphRAGSummarizer)
+✓ Copilot agent ready (IndustrialCopilotAgent)
+✓ YOLO model loaded
+✓ DocLayout-YOLO detector loaded
+✓ Pipeline initialized in 'partial-stack' mode
+INFO:     127.0.0.1:51234 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "POST /api/v1/process-pdf HTTP/1.1" 200 OK
+[32m[INFO] 2026-07-12 00:25:52,260 [RapidOCR] base.py:23: Using engine_name: onnxruntime[0m
+[32m[INFO] 2026-07-12 00:25:52,285 [RapidOCR] download_file.py:60: File exists and is valid: /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/PP-OCRv6_det_small.onnx[0m
+[32m[INFO] 2026-07-12 00:25:52,286 [RapidOCR] main.py:63: Using /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/PP-OCRv6_det_small.onnx[0m
+[32m[INFO] 2026-07-12 00:25:52,450 [RapidOCR] base.py:23: Using engine_name: onnxruntime[0m
+[32m[INFO] 2026-07-12 00:25:52,453 [RapidOCR] download_file.py:60: File exists and is valid: /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/ch_ppocr_mobile_v2.0_cls_mobile.onnx[0m
+[32m[INFO] 2026-07-12 00:25:52,454 [RapidOCR] main.py:63: Using /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/ch_ppocr_mobile_v2.0_cls_mobile.onnx[0m
+[32m[INFO] 2026-07-12 00:25:52,581 [RapidOCR] base.py:23: Using engine_name: onnxruntime[0m
+[32m[INFO] 2026-07-12 00:25:52,637 [RapidOCR] download_file.py:60: File exists and is valid: /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/PP-OCRv6_rec_small.onnx[0m
+[32m[INFO] 2026-07-12 00:25:52,637 [RapidOCR] main.py:63: Using /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/PP-OCRv6_rec_small.onnx[0m
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+`torch_dtype` is deprecated! Use `dtype` instead!
+✓ Surya layout and table extraction initialized
+Recognizing layout:   0%|          | 0/5 [00:00<?, ?it/s]INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+Recognizing layout:  20%|██        | 1/5 [00:07<00:29,  7.28s/it]INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+Recognizing layout:  40%|████      | 2/5 [00:15<00:23,  7.82s/it]INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+Recognizing layout:  60%|██████    | 3/5 [00:23<00:15,  7.74s/it]INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+Recognizing layout:  80%|████████  | 4/5 [00:29<00:07,  7.30s/it]INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+Recognizing layout: 100%|██████████| 5/5 [00:36<00:00,  7.26s/it]Recognizing layout: 100%|██████████| 5/5 [00:36<00:00,  7.39s/it]
+Recognizing tables:   0%|          | 0/2 [00:00<?, ?it/s]INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
