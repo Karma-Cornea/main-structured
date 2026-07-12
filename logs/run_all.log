@@ -270,3 +270,793 @@ INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f
 INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
 INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
 INFO:     127.0.0.1:51956 - "GET /api/v1/jobs/ada3912f-8ac7-496b-8c63-634f06fd5f55 HTTP/1.1" 200 OK
+================================================================================
+Industrial PDF-to-Graph Pipeline - Full Setup & Startup
+================================================================================
+
+Logging to: /media/sagesujal/DEV1/bytes/structured/logs/run_all.log
+
+[1/6] Setting up Python environment...
+  Loading environment from .env.local
+[2/6] Checking backend service mode...
+  Running in native backend mode for local/Kaggle environments.
+  Native backend mode enabled. Docker will not be used.
+  Preparing native Redis...
+  Starting Redis on localhost:6379
+  Preparing native Qdrant...
+  Starting Qdrant on localhost:6333
+  Preparing native Neo4j...
+  Starting Neo4j on localhost:7687
+  Waiting for Redis on 127.0.0.1:6379...
+  ✓ Redis is ready
+  Waiting for Qdrant on 127.0.0.1:6333...
+  ✓ Qdrant is ready
+  Waiting for Neo4j on 127.0.0.1:7687...
+  ✓ Neo4j is ready
+[3/6] Installing Python dependencies...
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/albumentations/__init__.py:24: UserWarning: A new version of Albumentations is available: 2.0.8 (you have 1.4.24). Upgrade using: pip install -U albumentations. To disable automatic update checks, set the environment variable NO_ALBUMENTATIONS_UPDATE to 1.
+  check_for_updates()
+Detected missing runtime dependencies: surya-ocr>=0.4.10, nougat-ocr>=0.1.17, seqeval<1.0.0, umap-learn>=0.5.4
+Installing missing dependencies: surya-ocr>=0.4.10, nougat-ocr>=0.1.17, seqeval<1.0.0, umap-learn>=0.5.4
+  WARNING: some dependencies remain unavailable: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, umap-learn>=0.5.4
+⚠ Dependency install completed with failures: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, umap-learn>=0.5.4
+  ⚠ Dependency bootstrap reported issues; continuing in best-effort mode.
+[4/6] Creating necessary directories...
+  ✓ Directories created
+[5/6] Downloading and preparing AI models...
+
+  This step downloads ~2.5GB of pre-trained models.
+  Models will be cached for future runs.
+
+[CONFIG] Loaded configuration from: /media/sagesujal/DEV1/bytes/structured/.env.local
+[CONFIG] Execution Mode: GPU
+[CONFIG] Running in GPU mode (optimized for speed)
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/ultralytics/nn/tasks.py:732: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(file, map_location="cpu")
+UserWarning: Failed to load custom C++ ops. Running on CPU mode Only!
+UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3595.)
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+BERTopic initialization failed: module 'pyarrow' has no attribute 'PyExtensionType'
+  Initializing CORE models (downloading if needed)...
+  ----------------------------------------------------------------------
+✓ PID Symbol Detector ready (yolov8)
+  ✓ YOLOv12 P&ID Detector
+final text_encoder_type: bert-base-uncased
+✓ GroundingDINO detector ready
+  ✓ GroundingDINO Zero-shot Detector
+✓ SAM2 segmenter ready
+  ✓ SAM2 Segmenter
+✓ BGE Embedder ready (transformers): BAAI/bge-m3
+  ✓ BGE-M3 Embedder
+✓ BGE Reranker ready: BAAI/bge-reranker-v2-m3
+  ✓ BGE-Reranker-v2
+⚠ GLiREL initialization failed: No module named 'seqeval.metrics.v1', using heuristic fallback
+  ⚠ GLiREL Relation Extractor: unavailable
+⚠ BLINK unavailable; using lightweight lexical fallback
+  ⚠ BLINK Entity Linker: unavailable
+  ----------------------------------------------------------------------
+  Core models ready: 5/7
+
+✗ GLiNER initialization failed: module 'pyarrow' has no attribute 'PyExtensionType'
+  ✓ GLiNER Entity Extractor
+✗ GLiREL initialization failed: No module named 'seqeval.metrics.v1'
+  ⚠ GLiREL Relation Extractor (in pipeline): unavailable
+
+  Initializing ADVANCED models...
+  ----------------------------------------------------------------------
+
+  Advanced models ready: 10/10
+
+  All models initialization complete!
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/qdrant_client/qdrant_client.py:169: RuntimeWarning: Unable to close http connection. Connection was interrupted on the server side
+  ✓ Models ready
+[6/6] Starting services...
+
+  Skipping qdrant and neo4j container startup because Docker daemon is unavailable.
+
+================================================================================
+✓ Industrial PDF-to-Graph Pipeline Ready (degraded mode)
+================================================================================
+
+Backend running on:
+  HTTP:  http://127.0.0.1:8001
+  Docs:  http://127.0.0.1:8001/docs
+  ReDoc: http://127.0.0.1:8001/redoc
+
+CORE API Endpoints:
+  POST   /api/v1/process-pdf        - Upload and process PDF
+  GET    /api/v1/jobs               - List all jobs
+  GET    /api/v1/jobs/{job_id}      - Get job results
+  GET    /api/v1/models/status      - Check model status
+  GET    /health                    - Health check
+
+ADVANCED ANALYSIS Endpoints:
+  GET    /api/v1/advanced/models/status           - Advanced models status
+  POST   /api/v1/advanced/vector-search           - Search embeddings (Qdrant)
+  POST   /api/v1/advanced/graph-reasoning         - GraphRAG reasoning
+  POST   /api/v1/advanced/llm-analysis            - Qwen 3 LLM analysis
+  POST   /api/v1/advanced/anomaly-detection       - TimesFM anomaly detection
+  POST   /api/v1/advanced/rul-prediction          - TFT RUL prediction
+  POST   /api/v1/advanced/root-cause-analysis     - RCA with full analysis
+  POST   /api/v1/advanced/failure-prediction      - Predict equipment failure
+  GET    /api/v1/advanced/pipeline-stages         - List all advanced stages
+
+AI MODELS INTEGRATED:
+  Core (8 models):        YOLOv12, GroundingDINO, SAM2, GLiNER, GLiREL, BLINK, BGE-M3, BGE-Reranker
+  Advanced (7 systems):   Qdrant, GraphRAG, Qwen 3, TimesFM, TFT, LangGraph, RCA Agent
+  Total:                  15 models + systems integrated
+
+Execution Mode: gpu
+  Set EXECUTION_MODE=gpu for optimized GPU processing
+  Local CPU mode: No time restrictions, suitable for testing all features
+  GPU mode: Optimized for speed on server hardware
+
+Ctrl+C to stop the server
+================================================================================
+
+[CONFIG] Loaded configuration from: /media/sagesujal/DEV1/bytes/structured/.env.local
+[CONFIG] Execution Mode: GPU
+[CONFIG] Running in GPU mode (optimized for speed)
+INFO:     Started server process [239167]
+INFO:     Waiting for application startup.
+UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3595.)
+Initializing Industrial PDF-to-Graph Pipeline...
+✓ Docling OCR initialized for PDF OCR
+✓ OCR processor ready (DoclingOCRProcessor)
+✗ GLiNER initialization failed: module 'pyarrow' has no attribute 'PyExtensionType'
+✓ Entity extractor ready (GlinerEntityExtractor)
+✗ GLiREL initialization failed: No module named 'seqeval.metrics.v1'
+⚠ Relation extractor initialization failed: RuntimeError - Relation extractor did not initialize
+✓ PID Symbol Detector ready (yolov8)
+✓ PID symbol detector ready (yolov8)
+final text_encoder_type: bert-base-uncased
+✓ GroundingDINO detector ready
+✓ GroundingDINO detector ready
+✓ SAM2 segmenter ready
+✓ SAM2 segmenter ready
+✓ BGE Embedder ready (transformers): BAAI/bge-m3
+✓ BGE embedding model ready
+✓ BGE Reranker ready: BAAI/bge-reranker-v2-m3
+✓ BGE reranker ready
+✓ BLINK linker ready
+  Waiting for Neo4j (1/20): {neo4j_code: Neo.ClientError.Security.Unauthorized} {message: The client is unauthorized due to authentication failure.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. The client is unauthorized due to authentication failure.}
+  Waiting for Neo4j (1/20): {neo4j_code: Neo.ClientError.Security.CredentialsExpired} {message: ACCESS on database 'neo4j' is not allowed.
+
+The credentials you provided were valid, but must be changed before you can use this instance. If this is the first time you are using Neo4j, this is to ensure you are not using the default credentials in production. If you are not using default credentials, you are getting this message because an administrator requires a password change.
+To change your password, issue an `ALTER CURRENT USER SET PASSWORD FROM 'current password' TO 'new password'` statement against the system database.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. ACCESS on database 'neo4j' is not allowed.
+
+The credentials you provided were valid, but must be changed before you can use this instance. If this is the first time you are using Neo4j, this is to ensure you are not using the default credentials in production. If you are not using default credentials, you are getting this message because an administrator requires a password change.
+To change your password, issue an `ALTER CURRENT USER SET PASSWORD FROM 'current password' TO 'new password'` statement against the system database.}
+  Waiting for Neo4j (6/20): {neo4j_code: Neo.ClientError.Security.Unauthorized} {message: The client is unauthorized due to authentication failure.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. The client is unauthorized due to authentication failure.}
+  Waiting for Neo4j (6/20): {neo4j_code: Neo.ClientError.Security.CredentialsExpired} {message: ACCESS on database 'neo4j' is not allowed.
+
+The credentials you provided were valid, but must be changed before you can use this instance. If this is the first time you are using Neo4j, this is to ensure you are not using the default credentials in production. If you are not using default credentials, you are getting this message because an administrator requires a password change.
+To change your password, issue an `ALTER CURRENT USER SET PASSWORD FROM 'current password' TO 'new password'` statement against the system database.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. ACCESS on database 'neo4j' is not allowed.
+
+The credentials you provided were valid, but must be changed before you can use this instance. If this is the first time you are using Neo4j, this is to ensure you are not using the default credentials in production. If you are not using default credentials, you are getting this message because an administrator requires a password change.
+To change your password, issue an `ALTER CURRENT USER SET PASSWORD FROM 'current password' TO 'new password'` statement against the system database.}
+  Waiting for Neo4j (11/20): {neo4j_code: Neo.ClientError.Security.Unauthorized} {message: The client is unauthorized due to authentication failure.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. The client is unauthorized due to authentication failure.}
+  Waiting for Neo4j (11/20): {neo4j_code: Neo.ClientError.Security.CredentialsExpired} {message: ACCESS on database 'neo4j' is not allowed.
+
+The credentials you provided were valid, but must be changed before you can use this instance. If this is the first time you are using Neo4j, this is to ensure you are not using the default credentials in production. If you are not using default credentials, you are getting this message because an administrator requires a password change.
+To change your password, issue an `ALTER CURRENT USER SET PASSWORD FROM 'current password' TO 'new password'` statement against the system database.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. ACCESS on database 'neo4j' is not allowed.
+
+The credentials you provided were valid, but must be changed before you can use this instance. If this is the first time you are using Neo4j, this is to ensure you are not using the default credentials in production. If you are not using default credentials, you are getting this message because an administrator requires a password change.
+To change your password, issue an `ALTER CURRENT USER SET PASSWORD FROM 'current password' TO 'new password'` statement against the system database.}
+  Waiting for Neo4j (16/20): {neo4j_code: Neo.ClientError.Security.Unauthorized} {message: The client is unauthorized due to authentication failure.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. The client is unauthorized due to authentication failure.}
+  Waiting for Neo4j (16/20): {neo4j_code: Neo.ClientError.Security.CredentialsExpired} {message: ACCESS on database 'neo4j' is not allowed.
+
+The credentials you provided were valid, but must be changed before you can use this instance. If this is the first time you are using Neo4j, this is to ensure you are not using the default credentials in production. If you are not using default credentials, you are getting this message because an administrator requires a password change.
+To change your password, issue an `ALTER CURRENT USER SET PASSWORD FROM 'current password' TO 'new password'` statement against the system database.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. ACCESS on database 'neo4j' is not allowed.
+
+The credentials you provided were valid, but must be changed before you can use this instance. If this is the first time you are using Neo4j, this is to ensure you are not using the default credentials in production. If you are not using default credentials, you are getting this message because an administrator requires a password change.
+To change your password, issue an `ALTER CURRENT USER SET PASSWORD FROM 'current password' TO 'new password'` statement against the system database.}
+  Waiting for Neo4j (20/20): {neo4j_code: Neo.ClientError.Security.Unauthorized} {message: The client is unauthorized due to authentication failure.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. The client is unauthorized due to authentication failure.}
+  Waiting for Neo4j (20/20): {neo4j_code: Neo.ClientError.Security.CredentialsExpired} {message: ACCESS on database 'neo4j' is not allowed.
+
+The credentials you provided were valid, but must be changed before you can use this instance. If this is the first time you are using Neo4j, this is to ensure you are not using the default credentials in production. If you are not using default credentials, you are getting this message because an administrator requires a password change.
+To change your password, issue an `ALTER CURRENT USER SET PASSWORD FROM 'current password' TO 'new password'` statement against the system database.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. ACCESS on database 'neo4j' is not allowed.
+
+The credentials you provided were valid, but must be changed before you can use this instance. If this is the first time you are using Neo4j, this is to ensure you are not using the default credentials in production. If you are not using default credentials, you are getting this message because an administrator requires a password change.
+To change your password, issue an `ALTER CURRENT USER SET PASSWORD FROM 'current password' TO 'new password'` statement against the system database.}================================================================================
+Industrial PDF-to-Graph Pipeline - Full Setup & Startup
+================================================================================
+
+Logging to: /media/sagesujal/DEV1/bytes/structured/logs/run_all.log
+
+[1/6] Setting up Python environment...
+  Loading environment from .env.local
+[2/6] Checking backend service mode...
+  Running in native backend mode for local/Kaggle environments.
+  Native backend mode enabled. Docker will not be used.
+  Preparing native Redis...
+  Starting Redis on localhost:6379
+  Preparing native Qdrant...
+  Starting Qdrant on localhost:6333
+  Preparing native Neo4j...
+  Neo4j already running
+  Waiting for Redis on 127.0.0.1:6379...
+  ✓ Redis is ready
+  Waiting for Qdrant on 127.0.0.1:6333...
+  ✓ Qdrant is ready
+  Waiting for Neo4j on 127.0.0.1:7687...
+  ✓ Neo4j is ready
+[3/6] Installing Python dependencies...
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/albumentations/__init__.py:24: UserWarning: A new version of Albumentations is available: 2.0.8 (you have 1.4.24). Upgrade using: pip install -U albumentations. To disable automatic update checks, set the environment variable NO_ALBUMENTATIONS_UPDATE to 1.
+  check_for_updates()
+Detected missing runtime dependencies: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, glirel==1.2.1, seqeval>=1.0.0,<1.3.0, blink>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+Installing missing dependencies: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, glirel==1.2.1, seqeval>=1.0.0,<1.3.0, blink>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+  WARNING: failed to install blink>=0.2.0
+error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [22 lines of output]
+      Traceback (most recent call last):
+        File "/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 389, in <module>
+          main()
+        File "/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 373, in main
+          json_out["return_val"] = hook(**hook_input["kwargs"])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File "/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 143, in get_requires_for_build_wheel
+          return hook(config_settings)
+                 ^^^^^^^^^^^^^^^^^^^^^
+        File "/tmp/pip-build-env-gqz7sojf/overlay/lib/python3.12/site-packages/setuptools/build_meta.py", line 333, in get_requires_for_build_wheel
+          return self._get_build_requires(config_settings, requirements=[])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File "/tmp/pip-build-env-gqz7sojf/overlay/lib/python3.12/site-packages/setuptools/build_meta.py", line 301, in _get_build_requires
+          self.run_setup()
+        File "/tmp/pip-build-env-gqz7sojf/overlay/lib/python3.12/site-packages/setuptools/build_meta.py", line 520, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File "/tmp/pip-build-env-gqz7sojf/overlay/lib/python3.12/site-packages/setuptools/build_meta.py", line 317, in run_setup
+          exec(code, locals())
+        File "<string>", line 7, in <module>
+        File "/tmp/pip-install-vkzoqshe/blink_190e9f6f1662459197ce3a380796a2f0/blink.py", line 2, in <module>
+          import io, json, os, requests, sys, yaml
+      ModuleNotFoundError: No module named 'requests'
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+ERROR: Failed to build 'blink' when getting requirements to build wheel
+  WARNING: some dependencies remain unavailable: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, blink>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+⚠ Dependency install completed with failures: blink>=0.2.0, pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+  ⚠ Dependency bootstrap reported issues; continuing in best-effort mode.
+[4/6] Creating necessary directories...
+  ✓ Directories created
+[5/6] Downloading and preparing AI models...
+
+  This step downloads ~2.5GB of pre-trained models.
+  Models will be cached for future runs.
+
+[CONFIG] Loaded configuration from: /media/sagesujal/DEV1/bytes/structured/.env.local
+[CONFIG] Execution Mode: GPU
+[CONFIG] Running in GPU mode (optimized for speed)
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/ultralytics/nn/tasks.py:732: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(file, map_location="cpu")
+UserWarning: Failed to load custom C++ ops. Running on CPU mode Only!
+UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3595.)
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+UserWarning: The sentencepiece tokenizer that you are converting to a fast tokenizer uses the byte fallback option which is not implemented in the fast tokenizers. In practice this means that the fast version of the tokenizer can produce unknown tokens whereas the sentencepiece version would have converted these unknown tokens into a sequence of byte tokens matching the original piece of text.
+BERTopic initialization failed: module 'pyarrow' has no attribute 'PyExtensionType'
+  Initializing CORE models (downloading if needed)...
+  ----------------------------------------------------------------------
+✓ PID Symbol Detector ready (yolov8)
+  ✓ YOLOv12 P&ID Detector
+final text_encoder_type: bert-base-uncased
+✓ GroundingDINO detector ready
+  ✓ GroundingDINO Zero-shot Detector
+✓ SAM2 segmenter ready
+  ✓ SAM2 Segmenter
+✓ BGE Embedder ready (transformers): BAAI/bge-m3
+  ✓ BGE-M3 Embedder
+✓ BGE Reranker ready: BAAI/bge-reranker-v2-m3
+  ✓ BGE-Reranker-v2
+⚠ GLiREL initialization failed: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434, using heuristic fallback
+  ⚠ GLiREL Relation Extractor: unavailable
+⚠ BLINK unavailable; using lightweight lexical fallback
+  ⚠ BLINK Entity Linker: unavailable
+  ----------------------------------------------------------------------
+  Core models ready: 5/7
+
+✗ GLiNER initialization failed: module 'pyarrow' has no attribute 'PyExtensionType'
+  ✓ GLiNER Entity Extractor
+✗ GLiREL initialization failed: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+  ⚠ GLiREL Relation Extractor (in pipeline): unavailable
+
+  Initializing ADVANCED models...
+  ----------------------------------------------------------------------
+
+  Advanced models ready: 10/10
+
+  All models initialization complete!
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/qdrant_client/qdrant_client.py:169: RuntimeWarning: Unable to close http connection. Connection was interrupted on the server side
+  ✓ Models ready
+[6/6] Starting services...
+
+  Skipping qdrant and neo4j container startup because Docker daemon is unavailable.
+
+================================================================================
+✓ Industrial PDF-to-Graph Pipeline Ready (degraded mode)
+================================================================================
+
+Backend running on:
+  HTTP:  http://127.0.0.1:8001
+  Docs:  http://127.0.0.1:8001/docs
+  ReDoc: http://127.0.0.1:8001/redoc
+
+CORE API Endpoints:
+  POST   /api/v1/process-pdf        - Upload and process PDF
+  GET    /api/v1/jobs               - List all jobs
+  GET    /api/v1/jobs/{job_id}      - Get job results
+  GET    /api/v1/models/status      - Check model status
+  GET    /health                    - Health check
+
+ADVANCED ANALYSIS Endpoints:
+  GET    /api/v1/advanced/models/status           - Advanced models status
+  POST   /api/v1/advanced/vector-search           - Search embeddings (Qdrant)
+  POST   /api/v1/advanced/graph-reasoning         - GraphRAG reasoning
+  POST   /api/v1/advanced/llm-analysis            - Qwen 3 LLM analysis
+  POST   /api/v1/advanced/anomaly-detection       - TimesFM anomaly detection
+  POST   /api/v1/advanced/rul-prediction          - TFT RUL prediction
+  POST   /api/v1/advanced/root-cause-analysis     - RCA with full analysis
+  POST   /api/v1/advanced/failure-prediction      - Predict equipment failure
+  GET    /api/v1/advanced/pipeline-stages         - List all advanced stages
+
+AI MODELS INTEGRATED:
+  Core (8 models):        YOLOv12, GroundingDINO, SAM2, GLiNER, GLiREL, BLINK, BGE-M3, BGE-Reranker
+  Advanced (7 systems):   Qdrant, GraphRAG, Qwen 3, TimesFM, TFT, LangGraph, RCA Agent
+  Total:                  15 models + systems integrated
+
+Execution Mode: gpu
+  Set EXECUTION_MODE=gpu for optimized GPU processing
+  Local CPU mode: No time restrictions, suitable for testing all features
+  GPU mode: Optimized for speed on server hardware
+
+Ctrl+C to stop the server
+================================================================================
+
+[CONFIG] Loaded configuration from: /media/sagesujal/DEV1/bytes/structured/.env.local
+[CONFIG] Execution Mode: GPU
+[CONFIG] Running in GPU mode (optimized for speed)
+INFO:     Started server process [248729]
+INFO:     Waiting for application startup.
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/transformers/convert_slow_tokenizer.py:566: UserWarning: The sentencepiece tokenizer that you are converting to a fast tokenizer uses the byte fallback option which is not implemented in the fast tokenizers. In practice this means that the fast version of the tokenizer can produce unknown tokens whereas the sentencepiece version would have converted these unknown tokens into a sequence of byte tokens matching the original piece of text.
+  warnings.warn(
+UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3595.)
+BERTopic initialization failed: module 'pyarrow' has no attribute 'PyExtensionType'
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+================================================================================
+Industrial PDF-to-Graph Pipeline - Full Setup & Startup
+================================================================================
+
+Logging to: /media/sagesujal/DEV1/bytes/structured/logs/run_all.log
+
+[1/6] Setting up Python environment...
+  Loading environment from .env.local
+[2/6] Checking backend service mode...
+  Running in native backend mode for local/Kaggle environments.
+  Native backend mode enabled. Docker will not be used.
+  Preparing native Redis...
+  Starting Redis on localhost:6379
+  Preparing native Qdrant...
+  Starting Qdrant on localhost:6333
+  Preparing native Neo4j...
+  Neo4j already running
+  Waiting for Redis on 127.0.0.1:6379...
+  ✓ Redis is ready
+  Waiting for Qdrant on 127.0.0.1:6333...
+  ✓ Qdrant is ready
+  Waiting for Neo4j on 127.0.0.1:7687...
+  ✓ Neo4j is ready
+[3/6] Installing Python dependencies...
+  Installing GLiREL / seqeval / BLINK compatibility packages...
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/albumentations/check_version.py:51: UserWarning: Error fetching version info The read operation timed out
+  data = fetch_version_info()
+Detected missing runtime dependencies: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+Installing missing dependencies: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+  WARNING: some dependencies remain unavailable: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+⚠ Dependency install completed with failures: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+  ⚠ Dependency bootstrap reported issues; continuing in best-effort mode.
+[4/6] Creating necessary directories...
+  ✓ Directories created
+[5/6] Downloading and preparing AI models...
+
+  This step downloads ~2.5GB of pre-trained models.
+  Models will be cached for future runs.
+
+[CONFIG] Loaded configuration from: /media/sagesujal/DEV1/bytes/structured/.env.local
+[CONFIG] Execution Mode: GPU
+[CONFIG] Running in GPU mode (optimized for speed)
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/ultralytics/nn/tasks.py:732: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(file, map_location="cpu")
+UserWarning: Failed to load custom C++ ops. Running on CPU mode Only!
+UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3595.)
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+UserWarning: The sentencepiece tokenizer that you are converting to a fast tokenizer uses the byte fallback option which is not implemented in the fast tokenizers. In practice this means that the fast version of the tokenizer can produce unknown tokens whereas the sentencepiece version would have converted these unknown tokens into a sequence of byte tokens matching the original piece of text.
+BERTopic initialization failed: module 'pyarrow' has no attribute 'PyExtensionType'
+  Initializing CORE models (downloading if needed)...
+  ----------------------------------------------------------------------
+✓ PID Symbol Detector ready (yolov8)
+  ✓ YOLOv12 P&ID Detector
+final text_encoder_type: bert-base-uncased
+✓ GroundingDINO detector ready
+  ✓ GroundingDINO Zero-shot Detector
+✓ SAM2 segmenter ready
+  ✓ SAM2 Segmenter
+✓ BGE Embedder ready (transformers): BAAI/bge-m3
+  ✓ BGE-M3 Embedder
+✓ BGE Reranker ready: BAAI/bge-reranker-v2-m3
+  ✓ BGE-Reranker-v2
+⚠ GLiREL initialization failed: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434, using heuristic fallback
+  ⚠ GLiREL Relation Extractor: unavailable
+✓ BLINK entity linker ready
+  ✓ BLINK Entity Linker
+  ----------------------------------------------------------------------
+  Core models ready: 6/7
+
+✗ GLiNER initialization failed: module 'pyarrow' has no attribute 'PyExtensionType'
+  ✓ GLiNER Entity Extractor
+✗ GLiREL initialization failed: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+  ⚠ GLiREL Relation Extractor (in pipeline): unavailable
+
+  Initializing ADVANCED models...
+  ----------------------------------------------------------------------
+
+  Advanced models ready: 10/10
+
+  All models initialization complete!
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/qdrant_client/qdrant_client.py:169: RuntimeWarning: Unable to close http connection. Connection was interrupted on the server side
+  ✓ Models ready
+[6/6] Starting services...
+
+  Skipping qdrant and neo4j container startup because Docker daemon is unavailable.
+
+================================================================================
+✓ Industrial PDF-to-Graph Pipeline Ready (degraded mode)
+================================================================================
+
+Backend running on:
+  HTTP:  http://127.0.0.1:8001
+  Docs:  http://127.0.0.1:8001/docs
+  ReDoc: http://127.0.0.1:8001/redoc
+
+CORE API Endpoints:
+  POST   /api/v1/process-pdf        - Upload and process PDF
+  GET    /api/v1/jobs               - List all jobs
+  GET    /api/v1/jobs/{job_id}      - Get job results
+  GET    /api/v1/models/status      - Check model status
+  GET    /health                    - Health check
+
+ADVANCED ANALYSIS Endpoints:
+  GET    /api/v1/advanced/models/status           - Advanced models status
+  POST   /api/v1/advanced/vector-search           - Search embeddings (Qdrant)
+  POST   /api/v1/advanced/graph-reasoning         - GraphRAG reasoning
+  POST   /api/v1/advanced/llm-analysis            - Qwen 3 LLM analysis
+  POST   /api/v1/advanced/anomaly-detection       - TimesFM anomaly detection
+  POST   /api/v1/advanced/rul-prediction          - TFT RUL prediction
+  POST   /api/v1/advanced/root-cause-analysis     - RCA with full analysis
+  POST   /api/v1/advanced/failure-prediction      - Predict equipment failure
+  GET    /api/v1/advanced/pipeline-stages         - List all advanced stages
+
+AI MODELS INTEGRATED:
+  Core (8 models):        YOLOv12, GroundingDINO, SAM2, GLiNER, GLiREL, BLINK, BGE-M3, BGE-Reranker
+  Advanced (7 systems):   Qdrant, GraphRAG, Qwen 3, TimesFM, TFT, LangGraph, RCA Agent
+  Total:                  15 models + systems integrated
+
+Execution Mode: gpu
+  Set EXECUTION_MODE=gpu for optimized GPU processing
+  Local CPU mode: No time restrictions, suitable for testing all features
+  GPU mode: Optimized for speed on server hardware
+
+Ctrl+C to stop the server
+================================================================================
+
+[CONFIG] Loaded configuration from: /media/sagesujal/DEV1/bytes/structured/.env.local
+[CONFIG] Execution Mode: GPU
+[CONFIG] Running in GPU mode (optimized for speed)
+INFO:     Started server process [253236]
+INFO:     Waiting for application startup.
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/transformers/convert_slow_tokenizer.py:566: UserWarning: The sentencepiece tokenizer that you are converting to a fast tokenizer uses the byte fallback option which is not implemented in the fast tokenizers. In practice this means that the fast version of the tokenizer can produce unknown tokens whereas the sentencepiece version would have converted these unknown tokens into a sequence of byte tokens matching the original piece of text.
+  warnings.warn(
+UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3595.)
+BERTopic initialization failed: module 'pyarrow' has no attribute 'PyExtensionType'
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+Initializing Industrial PDF-to-Graph Pipeline...
+✓ Docling OCR initialized for PDF OCR
+✓ OCR processor ready (DoclingOCRProcessor)
+✗ GLiNER initialization failed: module 'pyarrow' has no attribute 'PyExtensionType'
+✓ Entity extractor ready (GlinerEntityExtractor)
+✗ GLiREL initialization failed: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+⚠ Relation extractor initialization failed: RuntimeError - Relation extractor did not initialize
+✓ PID Symbol Detector ready (yolov8)
+✓ PID symbol detector ready (yolov8)
+final text_encoder_type: bert-base-uncased
+✓ GroundingDINO detector ready
+✓ GroundingDINO detector ready
+✓ SAM2 segmenter ready
+✓ SAM2 segmenter ready
+✓ BGE Embedder ready (transformers): BAAI/bge-m3
+✓ BGE embedding model ready
+✓ BGE Reranker ready: BAAI/bge-reranker-v2-m3
+✓ BGE reranker ready
+✓ BLINK linker ready
+✗ Neo4j authentication failure for neo4j@bolt://localhost:7687: {neo4j_code: Neo.ClientError.Security.Unauthorized} {message: The client is unauthorized due to authentication failure.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. The client is unauthorized due to authentication failure.}
+✗ Neo4j store unavailable
+✓ GraphRAG summarizer ready (GraphRAGSummarizer)
+✓ Copilot agent ready (IndustrialCopilotAgent)
+✓ YOLO model loaded
+✓ DocLayout-YOLO detector loaded
+✓ Pipeline initialized in 'partial-stack' mode
+INFO:     127.0.0.1:47090 - "GET / HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:47090 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:47090 - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36714 - "POST /api/v1/process-pdf HTTP/1.1" 200 OK
+[32m[INFO] 2026-07-12 20:35:17,353 [RapidOCR] base.py:23: Using engine_name: onnxruntime[0m
+[32m[INFO] 2026-07-12 20:35:17,373 [RapidOCR] download_file.py:60: File exists and is valid: /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/PP-OCRv6_det_small.onnx[0m
+[32m[INFO] 2026-07-12 20:35:17,375 [RapidOCR] main.py:63: Using /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/PP-OCRv6_det_small.onnx[0m
+[32m[INFO] 2026-07-12 20:35:17,475 [RapidOCR] base.py:23: Using engine_name: onnxruntime[0m
+[32m[INFO] 2026-07-12 20:35:17,477 [RapidOCR] download_file.py:60: File exists and is valid: /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/ch_ppocr_mobile_v2.0_cls_mobile.onnx[0m
+[32m[INFO] 2026-07-12 20:35:17,478 [RapidOCR] main.py:63: Using /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/ch_ppocr_mobile_v2.0_cls_mobile.onnx[0m
+[32m[INFO] 2026-07-12 20:35:17,532 [RapidOCR] base.py:23: Using engine_name: onnxruntime[0m
+[32m[INFO] 2026-07-12 20:35:17,563 [RapidOCR] download_file.py:60: File exists and is valid: /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/PP-OCRv6_rec_small.onnx[0m
+[32m[INFO] 2026-07-12 20:35:17,563 [RapidOCR] main.py:63: Using /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/PP-OCRv6_rec_small.onnx[0m
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+`torch_dtype` is deprecated! Use `dtype` instead!
+✓ Surya layout and table extraction initialized
+Recognizing layout:   0%|          | 0/5 [00:00<?, ?it/s]INFO:     127.0.0.1:36714 - "GET /api/v1/jobs/2a416203-e531-4602-b822-c27f10c6edc7 HTTP/1.1" 200 OK
+================================================================================
+Industrial PDF-to-Graph Pipeline - Full Setup & Startup
+================================================================================
+
+Logging to: /media/sagesujal/DEV1/bytes/structured/logs/run_all.log
+
+[1/6] Setting up Python environment...
+  Loading environment from .env.local
+[2/6] Checking backend service mode...
+  Running in native backend mode for local/Kaggle environments.
+  Native backend mode enabled. Docker will not be used.
+  Preparing native Redis...
+  Starting Redis on localhost:6379
+  Preparing native Qdrant...
+  Starting Qdrant on localhost:6333
+  Preparing native Neo4j...
+  Neo4j already running
+  Waiting for Redis on 127.0.0.1:6379...
+  ✓ Redis is ready
+  Waiting for Qdrant on 127.0.0.1:6333...
+  ✓ Qdrant is ready
+  Waiting for Neo4j on 127.0.0.1:7687...
+  ✓ Neo4j is ready
+[3/6] Installing Python dependencies...
+  Installing GLiREL / seqeval / BLINK compatibility packages...
+================================================================================
+Industrial PDF-to-Graph Pipeline - Full Setup & Startup
+================================================================================
+
+Logging to: /media/sagesujal/DEV1/bytes/structured/logs/run_all.log
+
+[1/6] Setting up Python environment...
+  Loading environment from .env.local
+[2/6] Checking backend service mode...
+  Running in native backend mode for local/Kaggle environments.
+  Native backend mode enabled. Docker will not be used.
+  Preparing native Redis...
+  Starting Redis on localhost:6379
+  Preparing native Qdrant...
+  Starting Qdrant on localhost:6333
+  Preparing native Neo4j...
+  Neo4j already running
+  Waiting for Redis on 127.0.0.1:6379...
+  ✓ Redis is ready
+  Waiting for Qdrant on 127.0.0.1:6333...
+  ✓ Qdrant is ready
+  Waiting for Neo4j on 127.0.0.1:7687...
+  ✓ Neo4j is ready
+[3/6] Installing Python dependencies...
+  Installing GLiREL / seqeval / BLINK compatibility packages...
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/albumentations/__init__.py:24: UserWarning: A new version of Albumentations is available: 2.0.8 (you have 1.4.24). Upgrade using: pip install -U albumentations. To disable automatic update checks, set the environment variable NO_ALBUMENTATIONS_UPDATE to 1.
+  check_for_updates()
+================================================================================
+Industrial PDF-to-Graph Pipeline - Full Setup & Startup
+================================================================================
+
+Logging to: /media/sagesujal/DEV1/bytes/structured/logs/run_all.log
+
+[1/6] Setting up Python environment...
+  Loading environment from .env.local
+[2/6] Checking backend service mode...
+  Running in native backend mode for local/Kaggle environments.
+  Native backend mode enabled. Docker will not be used.
+  Preparing native Redis...
+  Starting Redis on localhost:6379
+  Preparing native Qdrant...
+  Starting Qdrant on localhost:6333
+  Preparing native Neo4j...
+  Neo4j already running
+  Waiting for Redis on 127.0.0.1:6379...
+  ✓ Redis is ready
+  Waiting for Qdrant on 127.0.0.1:6333...
+  ✓ Qdrant is ready
+  Waiting for Neo4j on 127.0.0.1:7687...
+  ✓ Neo4j is ready
+[3/6] Installing Python dependencies...
+  Installing GLiREL / seqeval / BLINK compatibility packages...
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/albumentations/__init__.py:24: UserWarning: A new version of Albumentations is available: 2.0.8 (you have 1.4.24). Upgrade using: pip install -U albumentations. To disable automatic update checks, set the environment variable NO_ALBUMENTATIONS_UPDATE to 1.
+  check_for_updates()
+Detected missing runtime dependencies: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+Installing missing dependencies: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+  WARNING: some dependencies remain unavailable: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+⚠ Dependency install completed with failures: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+  ⚠ Dependency bootstrap reported issues; continuing in best-effort mode.
+[4/6] Creating necessary directories...
+  Creating data and model cache directories
+  ✓ Directories created
+[5/6] Downloading and preparing AI models...
+
+  This step downloads ~2.5GB of pre-trained models.
+  Models will be cached for future runs.
+
+[CONFIG] Loaded configuration from: /media/sagesujal/DEV1/bytes/structured/.env.local
+[CONFIG] Execution Mode: GPU
+[CONFIG] Running in GPU mode (optimized for speed)
+================================================================================
+Industrial PDF-to-Graph Pipeline - Model Download Script
+================================================================================
+
+⬇ Downloading yolov8n.pt from https://github.com/ultralytics/assets/releases/dow...
+  Progress: 0.1%  Progress: 0.3%  Progress: 0.4%  Progress: 0.5%  Progress: 0.6%  Progress: 0.8%  Progress: 0.9%  Progress: 1.0%  Progress: 1.1%  Progress: 1.3%  Progress: 1.4%  Progress: 1.5%  Progress: 1.6%  Progress: 1.8%  Progress: 1.9%  Progress: 2.0%  Progress: 2.1%  Progress: 2.3%  Progress: 2.4%  Progress: 2.5%  Progress: 2.6%  Progress: 2.8%  Progress: 2.9%  Progress: 3.0%  Progress: 3.1%  Progress: 3.3%  Progress: 3.4%  Progress: 3.5%  Progress: 3.6%  Progress: 3.8%  Progress: 3.9%  Progress: 4.0%  Progress: 4.1%  Progress: 4.3%  Progress: 4.4%  Progress: 4.5%  Progress: 4.6%  Progress: 4.8%  Progress: 4.9%  Progress: 5.0%  Progress: 5.1%  Progress: 5.3%  Progress: 5.4%  Progress: 5.5%  Progress: 5.6%  Progress: 5.8%  Progress: 5.9%  Progress: 6.0%  Progress: 6.1%  Progress: 6.3%  Progress: 6.4%  Progress: 6.5%  Progress: 6.6%  Progress: 6.8%  Progress: 6.9%  Progress: 7.0%  Progress: 7.1%  Progress: 7.3%  Progress: 7.4%  Progress: 7.5%  Progress: 7.6%  Progress: 7.8%  Progress: 7.9%  Progress: 8.0%  Progress: 8.1%  Progress: 8.3%  Progress: 8.4%  Progress: 8.5%  Progress: 8.6%  Progress: 8.8%  Progress: 8.9%  Progress: 9.0%  Progress: 9.1%  Progress: 9.3%  Progress: 9.4%  Progress: 9.5%  Progress: 9.6%  Progress: 9.8%  Progress: 9.9%  Progress: 10.0%  Progress: 10.1%  Progress: 10.3%  Progress: 10.4%  Progress: 10.5%  Progress: 10.6%  Progress: 10.8%  Progress: 10.9%  Progress: 11.0%  Progress: 11.1%  Progress: 11.3%  Progress: 11.4%  Progress: 11.5%  Progress: 11.6%  Progress: 11.8%  Progress: 11.9%  Progress: 12.0%  Progress: 12.1%  Progress: 12.3%  Progress: 12.4%  Progress: 12.5%  Progress: 12.6%  Progress: 12.8%  Progress: 12.9%  Progress: 13.0%  Progress: 13.1%  Progress: 13.3%  Progress: 13.4%  Progress: 13.5%  Progress: 13.6%  Progress: 13.8%  Progress: 13.9%  Progress: 14.0%  Progress: 14.1%  Progress: 14.3%  Progress: 14.4%  Progress: 14.5%  Progress: 14.6%  Progress: 14.8%  Progress: 14.9%  Progress: 15.0%  Progress: 15.1%  Progress: 15.3%  Progress: 15.4%  Progress: 15.5%  Progress: 15.6%  Progress: 15.8%  Progress: 15.9%  Progress: 16.0%  Progress: 16.1%  Progress: 16.3%  Progress: 16.4%  Progress: 16.5%  Progress: 16.6%  Progress: 16.8%  Progress: 16.9%  Progress: 17.0%  Progress: 17.1%  Progress: 17.3%  Progress: 17.4%  Progress: 17.5%  Progress: 17.6%  Progress: 17.8%  Progress: 17.9%  Progress: 18.0%  Progress: 18.1%  Progress: 18.3%  Progress: 18.4%  Progress: 18.5%  Progress: 18.6%  Progress: 18.8%  Progress: 18.9%  Progress: 19.0%  Progress: 19.1%  Progress: 19.3%  Progress: 19.4%  Progress: 19.5%  Progress: 19.6%  Progress: 19.8%  Progress: 19.9%  Progress: 20.0%  Progress: 20.1%  Progress: 20.3%  Progress: 20.4%  Progress: 20.5%  Progress: 20.6%  Progress: 20.8%  Progress: 20.9%  Progress: 21.0%  Progress: 21.1%  Progress: 21.3%  Progress: 21.4%  Progress: 21.5%  Progress: 21.6%  Progress: 21.8%  Progress: 21.9%  Progress: 22.0%  Progress: 22.1%  Progress: 22.3%  Progress: 22.4%  Progress: 22.5%  Progress: 22.6%  Progress: 22.8%  Progress: 22.9%  Progress: 23.0%  Progress: 23.1%  Progress: 23.3%  Progress: 23.4%  Progress: 23.5%  Progress: 23.6%  Progress: 23.8%  Progress: 23.9%  Progress: 24.0%  Progress: 24.1%  Progress: 24.3%  Progress: 24.4%  Progress: 24.5%  Progress: 24.6%  Progress: 24.8%  Progress: 24.9%  Progress: 25.0%  Progress: 25.1%  Progress: 25.3%  Progress: 25.4%  Progress: 25.5%  Progress: 25.6%  Progress: 25.8%  Progress: 25.9%  Progress: 26.0%  Progress: 26.1%  Progress: 26.3%  Progress: 26.4%  Progress: 26.5%  Progress: 26.6%  Progress: 26.8%  Progress: 26.9%  Progress: 27.0%  Progress: 27.1%  Progress: 27.3%  Progress: 27.4%  Progress: 27.5%  Progress: 27.6%  Progress: 27.8%  Progress: 27.9%  Progress: 28.0%  Progress: 28.1%  Progress: 28.3%  Progress: 28.4%  Progress: 28.5%  Progress: 28.6%  Progress: 28.8%  Progress: 28.9%  Progress: 29.0%  Progress: 29.1%  Progress: 29.3%  Progress: 29.4%  Progress: 29.5%  Progress: 29.6%  Progress: 29.8%  Progress: 29.9%  Progress: 30.0%  Progress: 30.1%  Progress: 30.3%  Progress: 30.4%  Progress: 30.5%  Progress: 30.6%  Progress: 30.8%  Progress: 30.9%  Progress: 31.0%  Progress: 31.1%  Progress: 31.3%  Progress: 31.4%  Progress: 31.5%  Progress: 31.6%  Progress: 31.8%  Progress: 31.9%  Progress: 32.0%  Progress: 32.1%  Progress: 32.3%  Progress: 32.4%  Progress: 32.5%  Progress: 32.6%  Progress: 32.8%  Progress: 32.9%  Progress: 33.0%  Progress: 33.1%  Progress: 33.3%  Progress: 33.4%  Progress: 33.5%  Progress: 33.6%  Progress: 33.8%  Progress: 33.9%  Progress: 34.0%  Progress: 34.1%  Progress: 34.3%  Progress: 34.4%  Progress: 34.5%  Progress: 34.6%  Progress: 34.8%  Progress: 34.9%  Progress: 35.0%  Progress: 35.1%  Progress: 35.3%  Progress: 35.4%  Progress: 35.5%  Progress: 35.6%  Progress: 35.8%  Progress: 35.9%  Progress: 36.0%  Progress: 36.1%  Progress: 36.3%  Progress: 36.4%  Progress: 36.5%  Progress: 36.6%  Progress: 36.8%  Progress: 36.9%  Progress: 37.0%  Progress: 37.1%  Progress: 37.3%  Progress: 37.4%  Progress: 37.5%  Progress: 37.6%  Progress: 37.8%  Progress: 37.9%  Progress: 38.0%  Progress: 38.1%  Progress: 38.3%  Progress: 38.4%  Progress: 38.5%  Progress: 38.6%  Progress: 38.8%  Progress: 38.9%  Progress: 39.0%  Progress: 39.1%  Progress: 39.3%  Progress: 39.4%  Progress: 39.5%  Progress: 39.6%  Progress: 39.8%  Progress: 39.9%  Progress: 40.0%  Progress: 40.1%  Progress: 40.3%  Progress: 40.4%  Progress: 40.5%  Progress: 40.6%  Progress: 40.8%  Progress: 40.9%  Progress: 41.0%  Progress: 41.1%  Progress: 41.3%  Progress: 41.4%  Progress: 41.5%  Progress: 41.6%  Progress: 41.8%  Progress: 41.9%  Progress: 42.0%  Progress: 42.1%  Progress: 42.3%  Progress: 42.4%  Progress: 42.5%  Progress: 42.6%  Progress: 42.8%  Progress: 42.9%  Progress: 43.0%  Progress: 43.2%  Progress: 43.3%  Progress: 43.4%  Progress: 43.5%  Progress: 43.7%  Progress: 43.8%  Progress: 43.9%  Progress: 44.0%  Progress: 44.2%  Progress: 44.3%  Progress: 44.4%  Progress: 44.5%  Progress: 44.7%  Progress: 44.8%  Progress: 44.9%  Progress: 45.0%  Progress: 45.2%  Progress: 45.3%  Progress: 45.4%  Progress: 45.5%  Progress: 45.7%  Progress: 45.8%  Progress: 45.9%  Progress: 46.0%  Progress: 46.2%  Progress: 46.3%  Progress: 46.4%  Progress: 46.5%  Progress: 46.7%  Progress: 46.8%  Progress: 46.9%  Progress: 47.0%  Progress: 47.2%  Progress: 47.3%  Progress: 47.4%  Progress: 47.5%  Progress: 47.7%  Progress: 47.8%  Progress: 47.9%  Progress: 48.0%  Progress: 48.2%  Progress: 48.3%  Progress: 48.4%  Progress: 48.5%  Progress: 48.7%  Progress: 48.8%  Progress: 48.9%  Progress: 49.0%  Progress: 49.2%  Progress: 49.3%  Progress: 49.4%  Progress: 49.5%  Progress: 49.7%  Progress: 49.8%  Progress: 49.9%  Progress: 50.0%  Progress: 50.2%  Progress: 50.3%  Progress: 50.4%  Progress: 50.5%  Progress: 50.7%  Progress: 50.8%  Progress: 50.9%  Progress: 51.0%  Progress: 51.2%  Progress: 51.3%  Progress: 51.4%  Progress: 51.5%  Progress: 51.7%  Progress: 51.8%  Progress: 51.9%  Progress: 52.0%  Progress: 52.2%  Progress: 52.3%  Progress: 52.4%  Progress: 52.5%  Progress: 52.7%  Progress: 52.8%  Progress: 52.9%  Progress: 53.0%  Progress: 53.2%  Progress: 53.3%  Progress: 53.4%  Progress: 53.5%  Progress: 53.7%  Progress: 53.8%  Progress: 53.9%  Progress: 54.0%  Progress: 54.2%  Progress: 54.3%  Progress: 54.4%  Progress: 54.5%  Progress: 54.7%  Progress: 54.8%  Progress: 54.9%  Progress: 55.0%  Progress: 55.2%  Progress: 55.3%  Progress: 55.4%/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/ultralytics/nn/tasks.py:732: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(file, map_location="cpu")
+FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+UserWarning: Failed to load custom C++ ops. Running on CPU mode Only!
+UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3595.)
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+================================================================================
+Industrial PDF-to-Graph Pipeline - Full Setup & Startup
+================================================================================
+
+Logging to: /media/sagesujal/DEV1/bytes/structured/logs/run_all.log
+
+[1/6] Setting up Python environment...
+  Loading environment from .env.local
+[2/6] Checking backend service mode...
+  Running in native backend mode for local/Kaggle environments.
+  Native backend mode enabled. Docker will not be used.
+  Preparing native Redis...
+  Starting Redis on localhost:6379
+  Preparing native Qdrant...
+  Starting Qdrant on localhost:6333
+  Preparing native Neo4j...
+  Neo4j already running
+  Waiting for Redis on 127.0.0.1:6379...
+  ✓ Redis is ready
+  Waiting for Qdrant on 127.0.0.1:6333...
+  ✓ Qdrant is ready
+  Waiting for Neo4j on 127.0.0.1:7687...
+  ✓ Neo4j is ready
+[3/6] Installing Python dependencies...
+  Installing GLiREL / seqeval / BLINK compatibility packages...
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/albumentations/__init__.py:24: UserWarning: A new version of Albumentations is available: 2.0.8 (you have 1.4.24). Upgrade using: pip install -U albumentations. To disable automatic update checks, set the environment variable NO_ALBUMENTATIONS_UPDATE to 1.
+  check_for_updates()
+Detected missing runtime dependencies: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+Installing missing dependencies: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+  WARNING: some dependencies remain unavailable: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+⚠ Dependency install completed with failures: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+  ⚠ Dependency bootstrap reported issues; continuing in best-effort mode.
+[4/6] Creating necessary directories...
+  Creating data and model cache directories
+  ✓ Directories created
+[5/6] Downloading and preparing AI models...
+
+  This step downloads ~2.5GB of pre-trained models.
+  Models will be cached for future runs.
+
+[CONFIG] Loaded configuration from: /media/sagesujal/DEV1/bytes/structured/.env.local
+[CONFIG] Execution Mode: GPU
+[CONFIG] Running in GPU mode (optimized for speed)
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/ultralytics/nn/tasks.py:732: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(file, map_location="cpu")
+FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+UserWarning: Failed to load custom C++ ops. Running on CPU mode Only!
+UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3595.)
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+================================================================================
+Industrial PDF-to-Graph Pipeline - Full Setup & Startup
+================================================================================
+
+Logging to: /media/sagesujal/DEV1/bytes/structured/logs/run_all.log
+
+[1/6] Setting up Python environment...
+  Loading environment from .env.local
+[2/6] Checking backend service mode...
+  Running in native backend mode for local/Kaggle environments.
+  Native backend mode enabled. Docker will not be used.
+  Preparing native Redis...
+  Redis already running
+  Preparing native Qdrant...
+  Qdrant already running
+  Preparing native Neo4j...
+  Neo4j already running
+  Waiting for Redis on 127.0.0.1:6379...
+  ✓ Redis is ready
+  Waiting for Qdrant on 127.0.0.1:6333...
+  ✓ Qdrant is ready
+  Waiting for Neo4j on 127.0.0.1:7687...
+  ✓ Neo4j is ready
+[3/6] Installing Python dependencies...
+  Installing GLiREL / seqeval / BLINK compatibility packages...
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/albumentations/__init__.py:24: UserWarning: A new version of Albumentations is available: 2.0.8 (you have 1.4.24). Upgrade using: pip install -U albumentations. To disable automatic update checks, set the environment variable NO_ALBUMENTATIONS_UPDATE to 1.
+  check_for_updates()
+Detected missing runtime dependencies: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+Installing missing dependencies: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+  WARNING: some dependencies remain unavailable: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+⚠ Dependency install completed with failures: pyarrow>=15.0.0,<16.0.0, surya-ocr>=0.4.10, nougat-ocr>=0.1.17, gliner>=0.2.0, sentence-transformers>=3.0.0, bertopic>=0.15.0, umap-learn>=0.5.4
+  ⚠ Dependency bootstrap reported issues; continuing in best-effort mode.
+[4/6] Creating necessary directories...
+  Creating data and model cache directories
+  ✓ Directories created
+[5/6] Downloading and preparing AI models...
+
+  This step downloads ~2.5GB of pre-trained models.
+  Models will be cached for future runs.
+
+[CONFIG] Loaded configuration from: /media/sagesujal/DEV1/bytes/structured/.env.local
+[CONFIG] Execution Mode: GPU
+[CONFIG] Running in GPU mode (optimized for speed)
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/ultralytics/nn/tasks.py:732: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(file, map_location="cpu")
+FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+UserWarning: Failed to load custom C++ ops. Running on CPU mode Only!
+UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3595.)
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
