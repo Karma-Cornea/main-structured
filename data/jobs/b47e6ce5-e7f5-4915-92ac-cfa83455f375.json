@@ -1,0 +1,17 @@
+{
+  "job_id": "b47e6ce5-e7f5-4915-92ac-cfa83455f375",
+  "status": "failed",
+  "uploaded_filename": "sample.pdf",
+  "message": "Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`",
+  "error": "ValueError",
+  "pipeline_metadata": {
+    "stage_status": [
+      {
+        "stage": "docling_surya_ocr",
+        "status": "failed",
+        "message": "Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`",
+        "timestamp": "2026-07-13T19:27:40.024014"
+      }
+    ]
+  }
+}
