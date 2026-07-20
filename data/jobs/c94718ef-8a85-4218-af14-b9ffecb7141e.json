@@ -1,0 +1,17 @@
+{
+  "job_id": "c94718ef-8a85-4218-af14-b9ffecb7141e",
+  "status": "failed",
+  "uploaded_filename": "1_Hydro MPC-1-10 (1).pdf",
+  "message": "OCR processor unavailable.",
+  "error": "RuntimeError",
+  "pipeline_metadata": {
+    "stage_status": [
+      {
+        "stage": "docling_surya_ocr",
+        "status": "failed",
+        "message": "OCR processor unavailable.",
+        "timestamp": "2026-07-14T22:02:05.107387"
+      }
+    ]
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "job_id": "7cfc825a-dc30-4918-b0f1-1f4db6e26289",
+  "status": "failed",
+  "uploaded_filename": "sample.pdf",
+  "message": "GLiNER entity extractor is unavailable.",
+  "error": "RuntimeError",
+  "pipeline_metadata": {
+    "stage_status": [
+      {
+        "stage": "docling_surya_ocr",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:20:56.046877"
+      },
+      {
+        "stage": "doclayout_yolo_analysis",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:20:56.064718"
+      },
+      {
+        "stage": "surya_layout_understanding",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:20:56.064774"
+      },
+      {
+        "stage": "table_extraction",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:20:56.064787"
+      },
+      {
+        "stage": "table_transformer_extraction",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:20:56.077324"
+      },
+      {
+        "stage": "groundingdino_detection",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:20:56.083815"
+      },
+      {
+        "stage": "sam2_segmentation",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:20:56.090433"
+      },
+      {
+        "stage": "nougat_formula_recognition",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:20:56.090880"
+      },
+      {
+        "stage": "docling_reading_order",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:20:56.090901"
+      },
+      {
+        "stage": "yolo_pid_detector",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:20:59.943082"
+      },
+      {
+        "stage": "pid_symbol_detection",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:21:01.312159"
+      },
+      {
+        "stage": "pid_component_detection",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:21:01.324707"
+      },
+      {
+        "stage": "document_segmentation",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:21:01.324836"
+      },
+      {
+        "stage": "semantic_indexing",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-18T20:21:01.331450"
+      },
+      {
+        "stage": "entity_extraction",
+        "status": "failed",
+        "message": "GLiNER entity extractor is unavailable.",
+        "timestamp": "2026-07-18T20:21:01.331490"
+      }
+    ]
+  }
+}

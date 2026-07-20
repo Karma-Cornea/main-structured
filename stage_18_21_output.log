@@ -1,0 +1,26 @@
+[CONFIG] Loaded configuration from: /media/sagesujal/DEV1/bytes/structured/.env.local
+[CONFIG] Execution Mode: GPU
+[CONFIG] Running in GPU-preferred mode (optimized for speed)
+Loading pipeline...
+Initializing Industrial PDF-to-Graph Pipeline...
+✓ Docling OCR initialized for PDF OCR
+✓ OCR processor device: cpu
+✓ OCR processor ready (DoclingOCRProcessor)
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 571.96it/s]
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/transformers/convert_slow_tokenizer.py:566: UserWarning: The sentencepiece tokenizer that you are converting to a fast tokenizer uses the byte fallback option which is not implemented in the fast tokenizers. In practice this means that the fast version of the tokenizer can produce unknown tokens whereas the sentencepiece version would have converted these unknown tokens into a sequence of byte tokens matching the original piece of text.
+  warnings.warn(
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/transformers/convert_slow_tokenizer.py:566: UserWarning: The sentencepiece tokenizer that you are converting to a fast tokenizer uses the byte fallback option which is not implemented in the fast tokenizers. In practice this means that the fast version of the tokenizer can produce unknown tokens whereas the sentencepiece version would have converted these unknown tokens into a sequence of byte tokens matching the original piece of text.
+  warnings.warn(
+/media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4381.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+[32m[INFO] 2026-07-15 12:12:26,238 [RapidOCR] base.py:23: Using engine_name: onnxruntime[0m
+[32m[INFO] 2026-07-15 12:12:26,257 [RapidOCR] download_file.py:60: File exists and is valid: /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/PP-OCRv6_det_small.onnx[0m
+[32m[INFO] 2026-07-15 12:12:26,258 [RapidOCR] main.py:63: Using /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/PP-OCRv6_det_small.onnx[0m
+[32m[INFO] 2026-07-15 12:12:26,331 [RapidOCR] base.py:23: Using engine_name: onnxruntime[0m
+[32m[INFO] 2026-07-15 12:12:26,333 [RapidOCR] download_file.py:60: File exists and is valid: /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/ch_ppocr_mobile_v2.0_cls_mobile.onnx[0m
+[32m[INFO] 2026-07-15 12:12:26,334 [RapidOCR] main.py:63: Using /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/ch_ppocr_mobile_v2.0_cls_mobile.onnx[0m
+[32m[INFO] 2026-07-15 12:12:26,405 [RapidOCR] base.py:23: Using engine_name: onnxruntime[0m
+[32m[INFO] 2026-07-15 12:12:26,437 [RapidOCR] download_file.py:60: File exists and is valid: /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/PP-OCRv6_rec_small.onnx[0m
+[32m[INFO] 2026-07-15 12:12:26,437 [RapidOCR] main.py:63: Using /media/sagesujal/DEV1/bytes/structured/.venv/lib/python3.12/site-packages/rapidocr/models/PP-OCRv6_rec_small.onnx[0m

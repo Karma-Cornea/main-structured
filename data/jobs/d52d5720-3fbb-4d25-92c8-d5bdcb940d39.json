@@ -1,0 +1,203 @@
+{
+  "job_id": "d52d5720-3fbb-4d25-92c8-d5bdcb940d39",
+  "status": "failed",
+  "uploaded_filename": "1_Hydro MPC-1-10 (1).pdf",
+  "message": "Object of type int64 is not JSON serializable",
+  "error": "TypeError",
+  "pipeline_metadata": {
+    "stage_status": [
+      {
+        "stage": "docling_surya_ocr",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:39:10.188866"
+      },
+      {
+        "stage": "doclayout_yolo_analysis",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:39:12.864962"
+      },
+      {
+        "stage": "surya_layout_understanding",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:39:12.865008"
+      },
+      {
+        "stage": "table_extraction",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:39:12.865017"
+      },
+      {
+        "stage": "table_transformer_extraction",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:39:20.706715"
+      },
+      {
+        "stage": "groundingdino_detection",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:40:45.058367"
+      },
+      {
+        "stage": "sam2_segmentation",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:40:55.049407"
+      },
+      {
+        "stage": "nougat_formula_recognition",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:40:55.052427"
+      },
+      {
+        "stage": "docling_reading_order",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:40:55.052447"
+      },
+      {
+        "stage": "yolo_pid_detector",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:40:57.768987"
+      },
+      {
+        "stage": "pid_symbol_detection",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:40:58.181166"
+      },
+      {
+        "stage": "pid_component_detection",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:40:58.185426"
+      },
+      {
+        "stage": "document_segmentation",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:40:58.188576"
+      },
+      {
+        "stage": "semantic_indexing",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:41:27.240508"
+      },
+      {
+        "stage": "entity_extraction",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:41:53.539813"
+      },
+      {
+        "stage": "relation_extraction",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:42:02.178606"
+      },
+      {
+        "stage": "entity_linking",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:42:02.179480"
+      },
+      {
+        "stage": "bge_reranking",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:42:07.634407"
+      },
+      {
+        "stage": "qwen2_5_vl",
+        "status": "skipped",
+        "message": "slice(None, 12, None)",
+        "timestamp": "2026-07-14T22:42:07.634530"
+      },
+      {
+        "stage": "graphrag_analysis",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:43:36.433176"
+      },
+      {
+        "stage": "copilot_analysis",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:44:22.719875"
+      },
+      {
+        "stage": "neo4j_persistence",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:44:22.720417"
+      },
+      {
+        "stage": "stage_8_semantic_indexing",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:45:23.572039"
+      },
+      {
+        "stage": "stage_9_graph_reasoning",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:45:23.572125"
+      },
+      {
+        "stage": "stage_10_llm_analysis",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:47:01.144797"
+      },
+      {
+        "stage": "stage_11_anomaly_detection",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:47:01.166090"
+      },
+      {
+        "stage": "stage_12_rul_prediction",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:47:01.166596"
+      },
+      {
+        "stage": "stage_13_root_cause_analysis",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:50:15.773266"
+      },
+      {
+        "stage": "stage_14_failure_prediction",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:50:15.774018"
+      },
+      {
+        "stage": "stage_15_graph_embeddings",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:50:15.786746"
+      },
+      {
+        "stage": "stage_16_embedding_clustering",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:50:15.786899"
+      },
+      {
+        "stage": "stage_17_lessons_learned",
+        "status": "completed",
+        "message": "",
+        "timestamp": "2026-07-14T22:50:21.596423"
+      }
+    ]
+  }
+}
